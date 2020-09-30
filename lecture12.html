@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 12</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;3.2: Properties of determinants</h1>
+
+<p>
+<b>TL;DR</b>
+We will learn how to calculate determinants by row reduction,
+and some properties, including:
+a matrix is invertible if and only if it has non-zero determinant;
+and det(AB)=det(A)det(B).
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+Exams are graded.
+I hope the TAs will finish entering the data soon.
+I do not have any statistics yet,
+but the graders seem happy.
+The scale is the one
+<a href="https://en.wikipedia.org/wiki/Academic_grading_in_the_United_States">
+Wikipedia says</a>
+is "used by four different colleges in the United States".
+</p>
+
+<p>
+Some people want to take the next exam or the final exam early.
+Send me an email if you would be interested and have not already told me.
+</p>
+
+<p>
+Official policy on clickers is:
+if you forget to bring it,
+or it inexplicably does not record your attendance,
+then that's too bad.
+However I still get daily emails and requests about this.
+Therefore I put up a "forum" on Gauchospace to discuss this
+and other good or bad feelings you have about clickers.
+</p>
+
+<h2>Theorems in &sect;3.1&ndash;2</h2>
+
+<ol>
+<li> You can calculate determinants by
+     cofactor expansion along any row or column. </li>
+<li> You can easily calculate the determinant of a triangular matrix. </li>
+<li> You can calculate a determinant using row operations. </li>
+<li> A matrix is invertible &hArr; it has non-zero determinant. </li>
+<li> $\operatorname{det}A^T = \operatorname{det} A$. </li>
+<li> $\operatorname{det}(AB)=(\operatorname{det}A)(\operatorname{det}B)$. </li>
+</ol>
+
+<p>
+You do not need to know how to prove them,
+but I will say something about why they are true.
+</p>
+
+<h2>Theorem 1</h2>
+
+<p>
+Use this to compute the determinant
+by "strategic" cofactor expansion.
+If possible, choose a row or column with a lot of zeros.
+</p>
+
+<p>
+The textbook omits the proof of Theorem 1
+"to avoid a lengthy digression",
+so I will too.
+</p>
+
+<h2>Theorem 2</h2>
+
+<p>
+The determinant of a triangular matrix
+is the product of the diagonal entries.
+</p>
+
+<p>
+This is because of
+repeated
+"strategic" cofactor expansions.
+</p>
+
+<h2>Theorem 3</h2>
+
+<p>
+Recall the three kinds of row operations: swap, scale, replace.
+Here is how they affect the determinant.
+</p>
+
+<ul>
+<li> <span class=red>Swap</span>: multiply det by -1. </li>
+<li> <span class=red>Scale</span>: multiply det by the scalar. </li>
+<li> <span class=red>Replace</span>: det does not change! </li>
+</ul>
+
+<p>
+I will just show you for $2 \times 2$ matrices.
+(The book then uses the cofactor expansion and mathematical induction
+to prove it for larger matrices.)
+</p>
+
+<p>
+$$
+\begin{align}
+\left| \begin{array}{cc} c & d \\ a & b \end{array} \right| &= cb - da = -(ad-bc) \\
+\left| \begin{array}{cc} ka & kb \\ c & d \end{array} \right| &= (ka)d - (kb)c = k(ad-bc) \\
+\left| \begin{array}{cc} a & b \\ c+ka & d+kb \end{array} \right| &= a(d+kb) - b(c+ka) = ad-bc
+\end{align}
+$$
+</p>
+
+<p>
+You can use this to compute the determinant.
+Echelon form is upper triangular,
+so its determinant is the product of the entries on the main diagonal.
+</p>
+
+<h2>Example</h2>
+
+Let's calculate the determinant of
+$\left[ \begin{array}{ccc}
+2 & 4 & 6 \\ 3 & 6 & 10 \\ 0 & 1 & 1 \end{array} \right]$
+by different methods.
+
+<h3>Cofactor expansion</h3>
+
+<p>
+$$
+\begin{align}
+\left| \begin{array}{ccc} 2 & 4 & 6 \\ 3 & 6 & 10 \\ 0 & 1 & 1 \end{array} \right|
+&=
+2 \left| \begin{array}{cc} 6 & 10 \\ 1 & 1 \end{array} \right|
+- 4 \left| \begin{array}{cc} 3 & 10 \\ 0 & 1 \end{array} \right|
++ 6 \left| \begin{array}{cc} 3 & 6 \\ 0 & 1 \end{array} \right|
+\\ &= 2(-4) - 4(3) + 6(3)
+\\ &= -2
+\end{align}
+$$
+</p>
+
+<h3>Strategic cofactor expansion</h3>
+
+<p>
+$$
+\begin{align}
+\left| \begin{array}{ccc} 2 & 4 & 6 \\ 3 & 6 & 10 \\ 0 & 1 & 1 \end{array} \right|
+&=
+0 \left| \begin{array}{cc} 4 & 6 \\ 6 & 10 \end{array} \right|
+- 1 \left| \begin{array}{cc} 2 & 6 \\ 3 & 10 \end{array} \right|
++ 1 \left| \begin{array}{cc} 2 & 4 \\ 3 & 6 \end{array} \right|
+\\ &= 0(4) - 1(2) + 1(0)
+\\ &= -2
+\end{align}
+$$
+</p>
+
+<h3>Row operations</h3>
+
+<p>
+$$
+\begin{align}
+\left| \begin{array}{ccc} 2 & 4 & 6 \\ 3 & 6 & 10 \\ 0 & 1 & 1 \end{array} \right|
+&= 2 \left| \begin{array}{ccc} 1 & 2 & 3 \\ 3 & 6 & 10 \\ 0 & 1 & 1 \end{array} \right|
+\\ &= 2 \left| \begin{array}{ccc} 1 & 2 & 3 \\ 0 & 0 & 1 \\ 0 & 1 & 1 \end{array} \right|
+\\ &= -2 \left| \begin{array}{ccc} 1 & 2 & 3 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{array} \right|
+\\ &= -2
+\end{align}
+$$
+</p>
+
+<h3>Dodgson condensation</h3>
+
+<p>
+You do not need to know this method,
+and it does not always work,
+but I will show it to you anyway.
+</p>
+
+<img src="https://imagesilove.files.wordpress.com/2010/02/9.jpg"
+title="The mad hatter holds forth"
+alt="John Tenniel's illustration of the mad hatter"
+height=500>
+
+<h2>Theorem 4</h2>
+
+<p class=boxed>
+A is invertible &hArr; det A &ne; 0
+</p>
+
+<p>
+Use row reduction to calculate the determinant of $A$.
+You get plus-or-minus a product of scalars times
+the determinant of its echelon form.
+None of the scalars are zero
+because you are not allowed to scale a row by zero.
+</p>
+
+<p>
+If $A$ is invertible then its echelon form
+has pivots all down the main diagonal,
+so its determinant is non-zero.
+Or you could go all the way to reduced echelon form $I$,
+which has determinant one.
+</p>
+
+<p>
+If $A$ is not invertible then its reduced echelon form has a row of zeros,
+so its determinant is $0$.
+</p>
+
+<h2>Theorem 5</h2>
+
+<p class=boxed>
+$\operatorname{det} A^T = \operatorname{det} A$.
+</p>
+
+<p>
+This is easy if you believe Theorem 1.
+Cofactor expansion along a row of $A$
+is the same as along a column of $A^T$.
+</p>
+
+<h2>Theorem 6</h2>
+
+<p>
+If $A$ and $B$ are square matrices of the same size then
+</p>
+
+<p class=boxed>
+$\operatorname{det} (AB) = (\operatorname{det} A) (\operatorname{det} B)$.
+</p>
+
+<p>
+Magic!
+Or, if there is time, I can try to demystify it a little...
+</p>
+
+<h2>Clicker questions</h2>
+
+<p>
+True or false:
+</p>
+
+<ul>
+<li> $\det I = 1$. </li>
+<li> If $A$ is invertible then $\det A^{-1} = 1 / \det{A}$. </li>
+<li> If $A$ has a row of zeros then $\det A = 0$. </li>
+<li> If $A$ has two rows the same then $\det A = 0$. </li>
+<li> If $A$ has two columns the same then $\det A = 0$. </li>
+<li> $\operatorname{det} (2A) = 2 \operatorname{det} A$. </li>
+</ul>
+
+<p>
+Answer: all true except the last one.
+</p>
+
+</body>
+</html>

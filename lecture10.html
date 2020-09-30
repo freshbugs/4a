@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 10</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;2.2: The inverse of a matrix</h1>
+
+<p>
+<b>TL;DR</b>
+The inverse of a matrix is like the reciprocal of a number.
+You can use row reduction to figure out if a matrix has an inverse,
+and what it is.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+I'll put up homework 3 tonight, due in one week.
+</p>
+
+<p>
+Miguel Guillen is your OSC Peer Mentor.
+<img src="https://i.postimg.cc/kMVY9YNW/miguelguillen.jpg"
+title="Muigel Guillen"
+alt="Miguel Guillen, M 3-5, Th 10:30-3:00, Kerr 1150">
+</p>
+
+<h2>Motivation</h2>
+
+<p>
+The <span class=red>reciprocal</span> of the number $5$ is $\frac{1}{5}$,
+also called $5^{-1}$.
+</p>
+
+<p class=boxed>
+$$5 \times 5^{-1} = 1$$
+</p>
+
+<p>
+The <span class=red>inverse</span> of an $n \times n$ matrix $A$ is similar:
+</p>
+
+<p class=boxed>
+$$A^{-1}A = I_n, \quad AA^{-1} = I_n$$
+</p>
+
+<p>
+You can't divide by $A$,
+but you can multiply by $A^{-1}$.
+Be careful: usually $A^{-1}B \neq BA^{-1}$.
+</p>
+
+<h2>Not every matrix has an inverse</h2>
+
+<p>
+The most important thing to remember about inverses
+is that not every matrix has one.
+</p>
+
+<p>
+eg. invertible:
+</p>
+
+<ul>
+<li class=inline> $\left[ \begin{array}{cc} 1 & 0 \\ 0 & 2 \end{array} \right]$ </li>
+<li class=inline> $\left[ \begin{array}{cc} 1 & 2 \\ 0 & 1 \end{array} \right]$ </li>
+<li class=inline> $\left[ \begin{array}{cc} 0 & 1 \\ 1 & 0 \end{array} \right]$ </li>
+</ul>
+
+<p>
+eg. not invertible:
+</p>
+
+<ul>
+<li class=inline> $\left[ \begin{array}{cc} 0 & 0 \\ 0 & 0 \end{array} \right]$ </li>
+<li class=inline> $\left[ \begin{array}{cc} 1 & 0 \\ 0 & 0 \end{array} \right]$ </li>
+<li class=inline> $\left[ \begin{array}{cc} 1 & 1 \\ 1 & 1 \end{array} \right]$ </li>
+</ul>
+
+<h2>Theorem 4</h2>
+
+<p>
+$$\left[ \begin{array}{cc} a & b \\ c & d \end{array} \right]^{-1} 
+  = \frac{1}{ad - bc}
+  \left[ \begin{array}{cc} d & -b \\ -c & a \end{array} \right]$$
+if $ad - bc \neq 0$.
+</p>
+
+<h2>Theorem 5</h2>
+
+<p>
+If $A$ is invertible
+then $A \mathbf{x} = \mathbf{b}$ always has exactly one solution.
+</p>
+
+<h2>Theorem 6</h2>
+
+<ul>
+<li> $(A^{-1})^{-1} = A$ </li>
+<li> $(AB)^{-1} = B^{-1} A^{-1}$ </li>
+<li> $(A^T)^{-1} = (A^{-1})^T$ </li>
+</ul>
+
+<p>
+(...whenever these are all defined.)
+</p>
+
+<h2>Theorem 7</h2>
+
+
+<p>
+A matrix is invertible if and only if
+its reduced echelon form is the identity matrix.
+If so,
+you can compute the inverse using row reduction.
+$$ [A | I] \leadsto [I | A^{-1}]. $$
+</p>
+
+<p>
+For example:
+</p>
+
+<p>
+$$
+\begin{align}
+\left[ \begin{array}{cc|cc}
+ 1 & 2 & 1 & 0 \\
+ 3 & 4 & 0 & 1 \end{array} \right]
+&\leadsto 
+\left[ \begin{array}{cc|cc}
+ 1 & 2 & 1 & 0 \\
+ 0 & -2 & -3 & 1 \end{array} \right]
+\\ &\leadsto
+\left[ \begin{array}{cc|cc}
+ 1 & 0 & -2 & 1 \\
+ 0 & -2 & -3 & 1 \end{array} \right]
+\\ &\leadsto
+\left[ \begin{array}{cc|cc}
+ 1 & 0 & -2 & 1 \\
+ 0 & 1 & 3/2 & -1/2 \end{array} \right]
+\end{align}
+$$
+So
+$$
+\left[ \begin{array}{cc} 1 & 2 \\ 3 & 4 \end{array} \right]^{-1}
+=
+\left[ \begin{array}{cc|cc} -2 & 1 \\ 3/2 & -1/2 \end{array} \right]
+$$
+<p>
+
+<p>
+Check your answer: multiply and see if you get $I$.
+</p>
+
+<p>
+Another example:
+</p>
+
+<p>
+$$
+\left[ \begin{array}{cc|cc}
+ 1 & 1 & 1 & 0 \\
+ 1 & 1 & 0 & 1 \end{array} \right]
+\leadsto 
+\left[ \begin{array}{cc|cc}
+ 1 & 1 & 1 & 0 \\
+ 0 & 0 & -1 & 1 \end{array} \right]
+$$
+$\left[ \begin{array}{cc|cc} 1 & 1 \\ 1 & 1 \end{array} \right]$
+is not invertible,
+because its reduced echelon form has a row of zeros.
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+$\left[ \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 2 & 1 \end{array} \right]^{-1} =$
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span>
+$\left[ \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 2 & 1 \end{array} \right]$
+</li>
+<li class=inline> <span class=red>B</span>
+$\left[ \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & (1/2) & 1 \end{array} \right]$
+</li>
+<br />
+<li class=inline> <span class=red>C</span>
+$\left[ \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 0 & 1 \end{array} \right]$
+</li>
+<li class=inline> <span class=red>D</span>
+$\left[ \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & -2 & 1 \end{array} \right]$
+</li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+Is
+$ \left[ \begin{array}{ccc} 1&2&3 \\ 0&4&5 \\ 0&8&9 \end{array} \right] $
+invertible?
+</p>
+
+<ul>
+<li> <span class=red>A</span> Yes. </li>
+<li> <span class=red>B</span> No. </li>
+<li> <span class=red>C</span> Well, I could figure it out eventually... </li>
+</ul>
+
+<h2>Elementary matrices</h2>
+
+<p>
+If you do <span class=green>a single row operation</span> to $I$,
+you get an <span class=red>elementary matrix</span>.
+</p>
+
+<p>
+If $E$ is an $n \times n$ elementary matrix
+and $A$ is a $n \times m$ matrix
+then $EA$ is the same as:
+<span class=green>do a single row operation</span> to $A$.
+</p>
+
+<p>
+The book uses elementary matrices to prove Theorem 7.
+They are interesting and important,
+but will not play a big role in this course.
+</p>
+
+<h2>Clicker question (review)</h2>
+
+<p>
+Suppose echelon form of $A$ has a row of zeros.
+Does $A \mathbf{x} = \mathbf{b}$ have at least one solution?
+</p>
+
+<ul>
+<li> <span class=red>A</span> Definitely. </li>
+<li> <span class=red>B</span> Definitely not. </li>
+<li> <span class=red>C</span>
+     Sometimes yes, sometimes no, depending on $\mathbf{b}$. </li>
+</ul>
+
+<h2>Clicker question (review)</h2>
+
+<p>
+Suppose echelon form of $A$ has a column with no pivot.
+Does $A \mathbf{x} = \mathbf{b}$ have
+<span class=red>exactly</span> one solution?
+</p>
+
+<ul>
+<li> <span class=red>A</span> Definitely. </li>
+<li> <span class=red>B</span> Definitely not. </li>
+<li> <span class=red>C</span>
+     Sometimes yes, sometimes no, depending on $\mathbf{b}$. </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+Suppose echelon form of $A$ has a pivot in every row
+and a pivot in every column.
+Is $A$ invertible?
+</p>
+
+<ul>
+<li> <span class=red>A</span> Definitely. </li>
+<li> <span class=red>B</span> Definitely not. </li>
+<li> <span class=red>C</span> It's impossible to say. </li>
+</ul>
+
+<p>
+Added later:
+I forgot to say that
+</p>
+
+<p class=boxed>
+"Invertible" is only for square matrices.
+</p>
+
+</body>
+</html>

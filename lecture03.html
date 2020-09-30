@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+
+<!-- BEGIN JAVASCRIPT FOR THE SPAN DEMO -->
+<script>
+var canvas;
+var ctx;
+
+function drawAxes() {
+    ctx.beginPath();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#000000";
+    ctx.moveTo(250,0);
+    ctx.lineTo(250,500);
+    ctx.moveTo(0,250);
+    ctx.lineTo(500,250);
+    ctx.stroke();
+}
+
+function drawVector(x,y) {
+    x = 250 + (x * 50);
+    y = 250 - (y * 50);
+    ctx.beginPath();
+    ctx.lineWidth = 5;
+    ctx.moveTo(250, 250);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+}
+
+function setEquation() {
+    var a,
+        b,
+        x,
+        y,
+    a = Number(document.getElementById("a").innerHTML);
+    b = Number(document.getElementById("b").innerHTML);
+    x = (3 * a) + b,
+    y = a + (2 * b),
+    document.getElementById("a").innerHTML = a.toFixed(1);
+    document.getElementById("b").innerHTML = b.toFixed(1);
+    document.getElementById("x").innerHTML = x.toFixed(1);
+    document.getElementById("y").innerHTML = y.toFixed(1);
+}
+
+function setCanvas() {
+    var x = Number(document.getElementById("x").innerHTML),
+        y = Number(document.getElementById("y").innerHTML);
+    ctx.clearRect(0, 0, 500, 500);
+    drawAxes();
+    ctx.strokeStyle = "#ff0000";
+    drawVector(3, 1);
+    ctx.strokeStyle = "#00ff00";
+    drawVector(1, 2);
+    ctx.strokeStyle = "#0000ff";
+    drawVector(x, y);
+}
+
+function upA() {
+    var a,
+        e = document.getElementById("a");
+    a = Number(e.innerHTML) + 0.1;
+    e.innerHTML = a.toFixed(1);
+    setEquation();
+    setCanvas();
+}
+
+function upB() {
+    var b,
+        e = document.getElementById("b");
+    b = Number(e.innerHTML) + 0.1;
+    e.innerHTML = b.toFixed(1);
+    setEquation();
+    setCanvas();
+}
+
+function downA() {
+    var a,
+        e = document.getElementById("a");
+    a = Number(e.innerHTML) - 0.1;
+    e.innerHTML = a.toFixed(1);
+    setEquation();
+    setCanvas();
+}
+
+function downB() {
+    var b,
+        e = document.getElementById("b");
+    b = Number(e.innerHTML) - 0.1;
+    e.innerHTML = b.toFixed(1);
+    setEquation();
+    setCanvas();
+}
+
+function handleKeyDown(event) {
+    switch(event.keyCode) {
+        case 72: //h
+            downA();
+            break;
+        case 74: //j
+            downB();
+            break;
+        case 75: //k
+            upB();
+            break;
+        case 76: //l
+            upA();
+            break;
+    }
+}
+
+function init() {
+    document.onkeydown = handleKeyDown;
+    canvas = document.getElementById("myCanvas");
+    ctx = canvas.getContext("2d");
+    setCanvas();
+    setEquation();
+}
+</script>
+<!-- END JAVASCRIPT FOR THE SPAN DEMO -->
+
+<title>Math 4A, Lecture 3</title>
+<link rel="stylesheet" type="text/css" href="my4a.css">
+
+
+</head>
+<body onload="init()">
+
+<h1>&sect;1.3. Vector equations</h1>
+
+<p>
+<b>TL;DR</b>
+A vector is a column of numbers.
+The span of a set of vectors
+is the set of linear combinations.
+</p>
+
+<hr />
+
+<h2>Announcements</h2>
+
+<p>
+To log in to the publisher's website,
+the course code is bigelow05457.
+For login instructions,
+<a href="https://d9yj07t7.r.us-east-1.awstrack.me/L0/https:%2F%2Fportal.mypearson.com%2Fcourse-home%2Fhandout%2Fbigelow05457%2FStudent_Registration_Handout_bigelow05457.pdf/1/0100016d8a468817-a7a16ab3-5843-4934-ae11-9881140109d8-000000/BPSGBspFWNEUS9nwCKoJLjBzDzA=129">
+try this link</a>.
+I have not logged in.  I hope there is something useful there.
+</p>
+
+<p class=green>
+Edit added later: apparently this caused much confusion.
+The publisher's website is not compulsory!
+I only set it up on the off chance that someone who bought the textbook
+might get some extra value from it.
+Homework is still done on WebWork.
+</p>
+
+<p>
+The first homework is due on Friday.
+</p>
+
+<hr/>
+
+<h2>Column vector</h2>
+
+<p>
+A <span class=red>vector</span> is an ordered list of numbers.
+</p>
+
+<p>
+A <span class=red>column vector</span> is a list of numbers
+arranged in a column.
+</p>
+
+<p>
+Vectors are called
+$\mathbf{u}$, $\mathbf{v}$ and $\mathbf{w}$,
+or
+$\vec{u}$, $\vec{v}$ and $\vec{w}$.
+The column of all zeros is called the zero vector $\mathbf{0}$.
+</p>
+
+<p>
+In this context,
+a number is called an <span class=red>entry</span>
+if it is one of the numbers inside a vector,
+and a <span class=red>scalar</span> if it is not.
+</p>
+
+<p>
+$\mathbb{R}^n$ is the set of column vectors with $n$ entries.
+eg.
+$$\left[ \begin{array}{c} \pi \\ \sqrt{7} \end{array} \right]
+  \in \mathbb{R}^2.$$
+</p>
+
+<h2>Vector arithmetic</h2>
+
+<p>
+You can add, subtract, and scalar multiply vectors.
+eg.
+$$2 \left[ \begin{array}{c} 1 \\ 0 \end{array} \right]
+  - 3 \left[ \begin{array}{c} 4 \\ 5 \end{array} \right]
+  = \left[ \begin{array}{c} -10 \\ -15 \end{array} \right].$$
+</p>
+
+<p>
+You cannot multiply a vector by a vector
+(except later we will learn the dot product,
+and in some other class you might learn the cross product).
+You certainly cannot divide anything by a vector.
+</p>
+
+<h2>Axioms</h2>
+
+<p>
+The book has a list of algebraic properties of vectors.
+They are:
+</p>
+
+<p class=boxed>
+Addition is commutative and associative, and has an identity and
+inverses. Scalar multiplication is distributive (both ways) and
+associative, and has an identity.
+</p>
+
+<p>
+You don't have to memorize them, but they should be common sense.
+It's like you're doing arithmetic on lots of numbers at once.
+</p>
+
+<h2>Geometry</h2>
+
+<p>
+A vector 
+$\left[ \begin{array}{c} a \\ b \end{array} \right] \in \mathbf{R}^2$
+can be drawn in the plane, using Cartesian coordinates.
+I assume you have seen this before.
+(Thanks Descartes, Fermat, and Oresme.)
+</p>
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Oresme.jpg"
+  title="Oresme" alt="Portrait of Nicole Oresme" height=400>
+
+<p>
+A vector 
+$\left[ \begin{array}{c} a \\ b \\ c \end{array} \right] \in \mathbf{R}^3$
+can be represented in space,
+using $x$, $y$ and $z$ axes.
+</p>
+
+<p>
+You can draw a vector as just a dot,
+or as an arrow starting at the origin.
+</p>
+
+<p>
+Scalar multiplication stretches or shrinks a vector.
+A negative scalar makes it point in the opposite direction.
+Use the <span class=green>parallelogram rule for vector addition</span>.
+(Not to be confused with the parallelogram law for norms.)
+</p>
+
+<h2>Linear combination</h2>
+
+<p>
+In the equation:
+$$ \mathbf{b} = a \mathbf{u} + b \mathbf{v}, $$
+we say $\mathbf{b}$ is a <span class=red>linear combination</span>
+of $\mathbf{u}$ and $\mathbf{v}$.
+</p>
+
+<p>
+Memorize:
+</p>
+
+<p class=boxed>
+The span of (blah) is the set of linear combinations of (blah).
+</p>
+
+<p>
+Try it:
+(Keyboard controls: hjkl)
+</p>
+
+<canvas id="myCanvas" width="500" height="500"
+        style="border:1px solid #000000;"
+        onload="init()">
+Your browser dosen't support the HTML5 canvas.
+</canvas>
+
+<p>
+<span id="a">1</span> (3, 1) + 
+<span id="b">1</span> (1, 2) =
+(<span id="x">4</span>, <span id="y">3</span>)
+</p>
+
+<br/>
+
+<button type="button" onclick="upA();">^</button>
+&nbsp; &nbsp; &nbsp; &nbsp;
+<button type="button" onclick="upB();">^</button>
+<br/>
+<button type="button" onclick="downA();">v</button>
+&nbsp; &nbsp; &nbsp; &nbsp;
+<button type="button" onclick="downB();">v</button>
+<br/>
+
+<h2>A geometric description of span</h2>
+
+<p>
+In two and three dimensions,
+you can give a geometric description of the span. Watch me attempt
+to do this by waving my arms around. You always get a point, or a
+line, or a plane, or all of 3-dimensional space. It always goes
+through the origin.
+</p>
+
+<h2>How to tell if something is in the span</h2>
+
+<p>
+This is a core skill,
+that will be on the midterm.
+eg.
+</p>
+
+<p class=boxed>
+Is 
+$\left[ \begin{array}{c} 1 \\ 0 \end{array} \right]
+\in
+\operatorname{Span}
+\left\{ \left[ \begin{array}{c} 3 \\ 1 \end{array} \right],
+\left[ \begin{array}{c} 1 \\ 2 \end{array} \right] \right\}$?
+</p>
+
+<p>
+Here are different ways to ask the same question.
+</p>
+
+<ul>
+<li>
+Is 
+$\left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$
+in the span of
+$\left[ \begin{array}{c} 3 \\ 1 \end{array} \right]$,
+$\left[ \begin{array}{c} 1 \\ 2 \end{array} \right]$?
+</li>
+
+<li>
+Is
+$\left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$
+a linear combination of
+$\left[ \begin{array}{c} 3 \\ 1 \end{array} \right]$
+and
+$\left[ \begin{array}{c} 1 \\ 2 \end{array} \right]$?
+</li>
+
+<li>
+Is
+$\left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$
+equal to
+$a \left[ \begin{array}{c} 3 \\ 1 \end{array} \right]
+ + b \left[ \begin{array}{c} 1 \\ 2 \end{array} \right]$
+for some $a$ and $b$?
+</li>
+
+<li>
+Can we solve
+$a \left[ \begin{array}{c} 3 \\ 1 \end{array} \right]
+ + b \left[ \begin{array}{c} 1 \\ 2 \end{array} \right]
+ = \left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$?
+<br>
+<span class="green">
+(Solve for $a$ and $b$, instead of the usual $x$ and $y$.)
+</span>
+</li>
+
+<li>
+Can we solve
+$\left[ \begin{array}{c} 3 a + b \\ a + 2 b \end{array} \right]
+ = \left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$?
+</li>
+
+<li>
+Can we solve
+$$\begin{align} 3 a + b &= 1 \\ a + 2b &= 0 \end{align}$$
+</li>
+
+<li>
+Can we solve
+$$\left[ \begin{array}{cc|c} 3 & 1 & 1 \\ 1 & 2 & 0 \end{array} \right]$$
+<span class="green">
+(Notice how this augmented matrix is made of
+the column vectors in the original question.)
+</span>
+</li>
+</ul>
+
+<p>
+Reduced echelon form is
+$$\left[ \begin{array}{cc|c} 1 & 0 & 2/5 \\ 0 & 1 & -1/5 \end{array} \right]$$
+No pivots on the far right, so YES!
+</p>
+
+<p>
+Check your answer.
+</p>
+
+<p>
+If there were infinitely many solutions,
+the answer would still be yes.
+To check your answer, you may as well make the free variables zero.
+</p>
+
+<p>
+If there were no solutions,
+the answer would be no.
+</p>
+
+<h2>Clicker questions</h2>
+
+<p>
+Suppose $\mathbf{u}, \mathbf{v} \in \mathbf{R}^2$.
+Is
+$\mathbf{0} \in \operatorname{Span} \{\mathbf{u}, \mathbf{v} \}$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A:</span> Yes.
+</li>
+<li class=inline> <span class=red>B:</span> No.
+</li>
+<li class=inline> <span class=red>C:</span> Maybe.
+</li>
+</ul>
+
+<hr/>
+
+<p>
+Suppose $\mathbf{u}, \mathbf{v} \in \mathbf{R}^2$ are random.
+Is
+$\left[ \begin{array}{c} 1 \\ 0 \end{array} \right]
+\in \operatorname{Span} \{\mathbf{u}, \mathbf{v} \}$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A:</span> Probably.
+</li>
+<li class=inline> <span class=red>B:</span> Probably not.
+</li>
+<li class=inline> <span class=red>C:</span> Eh?
+</li>
+</ul>
+
+<hr/>
+
+<p>
+Suppose $\mathbf{u}, \mathbf{v}, \mathbf{w} \in \mathbf{R}^3$ are random.
+Is
+$\left[ \begin{array}{c} 1 \\ 0 \\ 0 \end{array} \right]
+\in \operatorname{Span} \{\mathbf{u}, \mathbf{v}, \mathbf{w} \}$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A:</span> Probably.
+</li>
+<li class=inline> <span class=red>B:</span> Probably not.
+</li>
+<li class=inline> <span class=red>C:</span> Eh?
+</li>
+</ul>
+
+
+<p>
+You can find other lectures about linear combination and span online, eg.
+<a href="https://www.khanacademy.org/math/linear-algebra/vectors_and_spaces/linear_combinations/v/linear-combinations-and-span">
+Khan academy</a>.
+</p>
+
+<hr/>
+
+<h2>Homework</h2>
+
+<p>
+As usual,
+read the next section of the textbook.
+</p>
+
+
+</body>
+</html>

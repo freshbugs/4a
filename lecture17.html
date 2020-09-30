@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 17</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;4.5: The dimension of a vector space</h1>
+
+<p>
+<b>TL;DR</b>
+The dimension of a vector space
+is the number of vectors in a basis.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+You do not need a "blue book" for the next exam.
+You will write the answers on the exam,
+and the TAs will scan them and grade them
+with the help of software.
+Please see the sample on Gauchospace.
+Please memorize the name of your TA and the time of your section.
+</p>
+
+<h2>Correction to Theorem 8</h2>
+
+<p> I forgot "onto" in the statement of Theorem 8. </p>
+
+<p class=boxed>
+If $\mathcal{B} = \{ \mathbf{b}_1, \dots, \mathbf{b}_n \}$
+is a basis for a vector space $V$
+then
+$$\mathbf{v} \mapsto [\mathbf{v}]_\mathcal{B}$$
+is a one-to-one and onto linear transformation from $V$ onto $\mathbb{R}^n$.
+</p>
+
+<p>
+If you don't know what "one-to-one" and "onto" mean,
+look up "bijection".
+</p>
+
+<p>
+A linear transformation $T$ is called one-to-one and onto
+if $T(\mathbf{x}) = \mathbf{b}$ always has exactly one solution.
+</p>
+
+<p>
+If $T(\mathbf{x}) = \mathbf{b}$ sometimes has infinity solutions
+then $T$ is many-to-one.
+</p>
+
+<p>
+If $T(\mathbf{x}) = \mathbf{b}$ has no solution for some $\mathbf{b}$
+then $T$ did not map onto that $\mathbf{b}$.
+</p>
+
+<p> Theorem 8 is more conceptual than useful to you at this point.  </p>
+
+<p>
+If $V$ was an abstract vector space,
+not columns of numbers,
+you might pick a basis and use coordinate vectors.
+Think of $\mathbf{v}$ as the "real" vector,
+and $[\mathbf{v}]_\mathcal{B}$ as "representing" $\mathbf{v}$.
+Theorem 8 says that no information is lost in this representation.
+</p>
+
+<h2>Confusion: change of coordinates</h2>
+
+<p>
+The change of coordinates matrix only applies
+when $V = \mathbb{R}^n$.
+Vectors are already columns of numbers,
+but for some reason you might prefer
+to represent them using a non-standard basis $\mathcal{B}$.
+</p>
+
+<p>
+The map $\mathbf{v} \mapsto [\mathbf{v}]_\mathcal{B}$
+is a linear map from $\mathbb{R}^n$ to itself,
+so it is given by an $n \times n$ matrix.
+</p>
+
+<p>
+That matrix is $P_\mathcal{B}$,
+whose columns are the basis vectors.
+For a square matrix,
+"one-to-one and onto" is the same as "invertible".
+</p>
+
+<p class=boxed>
+$\mathbf{v} = P_\mathcal{B} [\mathbf{v}]_\mathcal{B}, \quad
+[\mathbf{v}]_\mathcal{B} = P_\mathcal{B}^{-1} \mathbf{v}$
+</p>
+
+<p> This is more conceptual than useful to you at this point.  </p>
+
+<hr/>
+
+<h2>What is dimension?</h2>
+
+<p>
+There is a lot of nonsense on the internet and in popular culture.
+This video from WIRED is not bad:
+</p>
+
+<iframe width="420" height="315"
+src="https://www.youtube.com/embed/3KC32Vymo0Q">
+</iframe> 
+
+<p>
+"There are three directions"
+or "it takes three numbers to describe a point"
+are not great definitions of three dimensions.
+The "experiment" starting at 4:50 is better.
+It uses "right angles" instead of "linearly independent".
+</p>
+
+<h2>Theorem 9</h2>
+
+<p class=boxed>
+If $V$ has a basis with $n$ vectors,
+then any set of more than $n$ vectors in $V$
+must be linearly dependent.
+</p>
+
+<h2>Theorem 10</h2>
+
+<p class=boxed>
+Any two bases for $V$ must have the same number of vectors.
+</p>
+
+<p> [Added later: "bases" is the plural of "basis".] </p>
+
+<h2>Definition</h2>
+
+<p>
+If $\{ \mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n \}$
+is a basis for $V$
+then $n$ is the <span class=red>dimension</span> of $V$.
+</p>
+
+<p> <span class=red>Notation:</span> dim$(V) = n$. </p>
+
+<p> <span class=red>Zero:</span>
+If $V = \{ \mathbf{0} \}$ then dim$(V) = 0$.
+</p>
+
+<p>
+The set of all functions from $\mathbb{R}$ to $\mathbb{R}$
+is a vector space that does not have a finite basis.
+It is <span class=red>infinite dimensional</span>.
+</p>
+
+<p>
+A subspace of $\mathbb{R}^n$
+always has a finite basis.
+It is <span class=red>finite dimensional</span>.
+</p>
+
+<h2>Clicker question</h2>
+
+<p>What is dim$(\mathbb{R}^3)$?</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $3$. </li>
+<li class=inline> <span class=red>B</span> Nope. </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p> Why? </p>
+
+<ul>
+<li class=inline> <span class=red>A</span> 
+    Because every vector in $\mathbb{R}^3$ has three entries. </li>
+<li class=inline> <span class=red>B</span> Nope. </li>
+</ul>
+
+<h2>Theorem 11</h2>
+
+<p class=boxed>
+If $H$ is a subspace of $V$
+then $\operatorname{dim} H \le \operatorname{dim} V$.
+</p>
+
+<h2>Theorem 12</h2>
+
+<p>
+Let $V$ be a vector space
+and $\mathcal{B} = \{ \mathbf{b}_1, \mathbf{b}_2, \dots, \mathbf{b}_n\}$
+be a set of $n$ different vectors in $V$.
+</p>
+
+<div class=boxed>
+Any two of the following implies the third:
+<ul>
+<li> $\mathcal{B}$ is linearly independent. </li>
+<li> $\mathcal{B}$ spans $V$. </li>
+<li> dim$(V) = n$. </li>
+</ul>
+</div>
+
+<audio controls>
+<source src="twooutofthree.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio>
+
+<h2>Clicker space</h2>
+
+<p>
+Suppose reduced echelon form for $A$ looks like
+$$\left[
+\begin{array}{cccc}
+1 & * & 0 & * \\
+0 & 0 & 1 & * \\
+0 & 0 & 0 & 0
+\end{array}
+\right].$$
+What is the dimension of its null space?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> 1 </li>
+<li class=inline> <span class=red>B</span> 2 </li>
+<li class=inline> <span class=red>C</span> 3 </li>
+<li class=inline> <span class=red>D</span> 4 </li>
+<li class=inline> <span class=red>E</span> No way to tell </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+Suppose reduced echelon form for $A$ is
+$$\left[
+\begin{array}{cccc}
+1 & 1 & 0 & 0 & 2\\
+0 & 0 & 1 & 0 & 3\\
+0 & 0 & 0 & 1 & 4
+\end{array}
+\right].$$
+What is the dimension of its column space?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> 1 </li>
+<li class=inline> <span class=red>B</span> 2 </li>
+<li class=inline> <span class=red>C</span> 3 </li>
+<li class=inline> <span class=red>D</span> 4 </li>
+<li class=inline> <span class=red>E</span> No way to tell </li>
+</ul>
+
+
+</body>
+</html>

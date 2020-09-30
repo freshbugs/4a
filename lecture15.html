@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 15</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-AMS_HTML">
+</script>
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;4.3: Linearly independent sets, and bases</h1>
+
+<p>
+<b>TL;DR</b>
+A basis for something
+is a set of vectors that is linearly independent and spans it.
+</p>
+
+<h2>Announcements</h2>
+
+<p> The average on the midterm was 51.7 out of 60.</p>
+
+<h2>Confusing issues in this section</h2>
+
+<p>
+An <span class=red>indexed set</span> of vectors is something like
+$\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_n\}$,
+where the vectors come with subscripts.
+I tend to call it a <span class=red>list</span> of vectors.
+This is to get around the fact that sets are not usually ordered.
+Don't worry about it.
+</p>
+
+<p>
+The book has many examples from calculus,
+where the vectors are functions.
+I will continue to focus on vectors in $\mathbb{R}^n$.
+You can blame me when you are confused in Math 4B.
+</p>
+
+<h2>Theorem 4</h2>
+
+<p class=boxed>
+A set of at least two non-zero vectors
+is linearly dependent
+if and only if one of them is a linear combination of the previous ones.
+</p>
+
+<h2>Basis</h2>
+
+<p>
+A <span class=red>basis for $\mathbb{R}^n$</span>
+is a set of vectors in $\mathbb{R}^n$
+that is linearly independent and spans $\mathbb{R}^n$.
+</p>
+
+<p>
+A <span class=red>basis for the column space of $A$</span>
+is a set of vectors in the column space of $A$
+that is linearly independent
+and such that the column space is the span of them.
+</p>
+
+<p>
+Same for <span class=red>null space</span>.
+</p>
+
+<p>
+Same for any subspace of any vector space, eg.
+$\{ \cos x, \sin x \}$
+is a basis for the set of solutions to
+$y'' + y = 0$.
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+Is
+$ \left\{
+\left[ \begin{array}{c} 1 \\ 0 \\ 0 \end{array} \right],
+\left[ \begin{array}{c} 0 \\ 1 \\ 0 \end{array} \right],
+\left[ \begin{array}{c} 0 \\ 0 \\ 1 \end{array} \right]
+\right\}$
+a basis for $\mathbb{R}^3$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> yes </li>
+<li class=inline> <span class=red>B</span> no </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+You are given a set of three vectors in $\mathbb{R}^3$
+and asked if it is a basis for $\mathbb{R}^3$.
+You make them the columns of a three-by-three matrix,
+row reduce,
+and see if there is:
+</p>
+
+<ul>
+<li> <span class=red>A</span> a pivot in every row </li>
+<li> <span class=red>B</span> a pivot in every column </li>
+<li> <span class=red>C</span> either one of the above would work </li>
+<li> <span class=red>D</span> none of the above would work </li>
+</ul>
+
+<h2>Theorem 5 (paraphrased)</h2>
+
+<p>
+Suppose $A$ is an $m \times n$ matrix.
+Remember, the column space is the span of the columns of $A$.
+It is a subspace of $\mathbb{R}^m$.
+</p>
+
+<p class=boxed>
+If one column is a linear combination of the others
+then you can delete it
+to get a $m \times (n - 1)$ matrix
+that has the same column space.
+</p>
+
+<h2>Theorem 5&frac12;</h2>
+
+<p>
+Here is how to find a basis for the null space of $A$.
+</p>
+
+<ol>
+<li> Row reduce to reduced echelon form $R$. </li>
+<li> Write the general solution to the system of equations
+     $[R | \mathbf{0}]$. </li>
+<li> Rewrite the solution as
+     $\mathbf{x}$ = a linear combination.
+     (The scalars are the free variables.) </li>
+<li> Rewrite the linear combination as span of a set of vectors. </li>
+<li> That set of vectors is automatically a basis! </li>
+</ol>
+
+<p> (See comment number 1 on page 203.) </p>
+
+<h2>Theorem 6</h2>
+
+<p>
+Here is how to find a basis for the column space of $A$.
+</p>
+
+<ol>
+<li> Row reduce. </li>
+<li> Make a note of which columns have pivots. </li>
+<li> <span class=red>Go back</span> to the original matrix $A$. </li>
+<li> Take the columns of $A$ that are in the same positions
+     as the pivot columns of echelon form. </li>
+</ol>
+
+<h2>Clicker question</h2>
+
+<p>
+Find a basis for the column space of
+$\left[
+  \begin{array}{ccc} 1 & 0 & 0 \\ 0 & 1 & 2 \\ 0 & 5 & 10
+  \end{array}
+\right].$
+</p>
+
+<ul>
+<li> <span class=red>A</span>
+    $\left\{
+        \left[ \begin{array}{c} 1 \\ 0 \\ 0 \end{array} \right],
+        \left[ \begin{array}{c} 0 \\ 1 \\ 0 \end{array} \right] \right\}$
+</li>
+<li> <span class=red>B</span>
+    $\left\{
+        \left[ \begin{array}{c} 1 \\ 0 \\ 0 \end{array} \right],
+        \left[ \begin{array}{c} 0 \\ 1 \\ 5 \end{array} \right] \right\}$
+</li>
+<li> <span class=red>C</span>
+    $\left\{
+        \left[ \begin{array}{c} 1 \\ 0 \\ 0 \end{array} \right],
+        \left[ \begin{array}{c} 0 \\ 1 \\ 5 \end{array} \right],
+        \left[ \begin{array}{c} 0 \\ 2 \\ 10 \end{array} \right] \right\}$
+</li>
+<li> <span class=red>D</span> Two or three of the above. </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+Suppose $A$ is an $n \times n$ matrix,
+and $R$ is its reduced row echelon form.
+True or false:
+</p>
+
+<ul>
+<li> $A$ and $R$ have the same null space. </li>
+<li> $A$ and $R$ have the same column space. </li>
+<li> $A$ and $R$ have the same determinant. </li>
+<li> If $R$ has determinant zero then so does $A$. </li>
+<li> If $A \mathbf{x} = \mathbf{b}$
+     then $R \mathbf{x} = \mathbf{b}$. </li>
+</ul>
+
+<h2>Two views of a basis</h2>
+
+<img
+src="http://data-cache.abuledu.org/1024/les-trois-ours-par-walter-crane-36-58f531ce.jpg"
+height=600
+alt="Goldilocks and three chairs illustration by Walter Crane"
+>
+
+<p>
+In the children's story "Goldilocks and the three bears",
+one chair was too big,
+one was too small,
+and one was just right.
+(Or something like that.)
+</p>
+
+<p>
+A basis for $\mathbb{R}^n$ has to
+span $\mathbb{R}^n$
+and be linearly independent.
+</p>
+
+<p>
+eg., for
+$$
+\left[ \begin{array}{ccccc}
+1 & 2 & 32 & 14 & -5 \\
+0 & 3 & 11 & 0 & 1 \\
+0 & 6 & 22 & 22 & 22 \end{array} \right]
+$$
+the columns span $\mathbb{R}^3$,
+but are linearly dependent.
+This is <span class=red>too big</span>.
+For
+$$
+\left[ \begin{array}{cc}
+1 & 2 \\
+0 & 3 \\
+0 & 6 \end{array} \right]
+$$
+the columns are linearly independent
+but do not span $\mathbb{R}^3$.
+This is <span class=red>too small</span>.
+For
+$$
+\left[ \begin{array}{ccccc}
+1 & 2 & 14 \\
+0 & 3 & 0 \\
+0 & 6 & 22 \end{array} \right]
+$$
+the columns are a basis for $\mathbb{R}^3$.
+This is <span class=red>just right</span>.
+If you removed a column it would not span any more.
+If you added a column it would not be linearly independent any more.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 23</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;5.2 The characteristic equation</h1>
+
+<p><b>TL;DR</b>&nbsp;
+The eigenvalues are the roots of the characteristic equation.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+The grades from the second exam are up on gradescope.
+</p>
+
+<p>
+Apparently the average is 52 out of 60(!)
+</p>
+
+<p>
+Homework 6 is due on Friday.
+</p>
+
+<p>
+People ask me how to study.
+I have no special advice except the usual:
+do the homework,
+read the book slowly and repeatedly,
+do exercises from the book,
+ask your own questions and answer them,
+read other textbooks,
+watch lectures online,
+try to explain the concepts to someone else...
+</p>
+
+<p>
+Khan academy is always good.
+There is a famous series of
+<a href="https://ocw.mit.edu/courses/mathematics/18-06-linear-algebra-spring-2010/video-lectures/">
+MIT lectures on linear algebra</a>,
+which is significantly more advanced than 4A.
+</p>
+
+<h2>The story so far</h2>
+
+<p>
+$A$ is an $n \times n$ matrix.
+If $\mathbf{x} \neq \mathbf{0}$ and
+$$A \mathbf{x} = \lambda \mathbf{x}$$
+then $\mathbf{x}$ is an eigenvector and $\lambda$ is an eigenvalue.
+</p>
+
+<p>
+<span class=red>Theorem 1:</span>
+The eigenvalues of a triangular matrix are the diagonal entries.
+</p>
+
+<p>
+<span class=red>Theorem 2:</span>
+Eigenvectors with different eigenvalues must be linearly independent.
+</p>
+
+<p>
+Let's spend some time with this
+<a href="http://setosa.io/ev/eigenvectors-and-eigenvalues/">
+online demo</a>.
+</p>
+
+<h2>The characteristic equation</h2>
+
+<p>
+The <span class=red>characteristic polynomial</span> of $A$ is:
+</p>
+
+<p class=boxed>
+$$\det(A - \lambda I).$$
+</p>
+
+<p>
+It is an degree $n$ polynomial in the variable $\lambda$.
+</p>
+
+<p>
+The <span class=red>characteristic equation</span> of $A$ is:
+</p>
+
+<p class=boxed>
+$$\det(A - \lambda I) = 0.$$
+</p>
+
+<h2>Theorem 3&frac12;</h2>
+
+<p>
+The eigenvalues of $A$
+are the solutions to the characteristic equation.
+</p>
+
+<p>
+The following are equivalent:
+</p>
+
+<ul>
+<li> $\lambda$ is an eigenvalue of $A$. </li>
+<li> $A \mathbf{x} = \lambda \mathbf{x}$ has infinitely many solutions. </li>
+<li> $(A - \lambda I)\mathbf{x} = \mathbf{0}$
+     has infinitely many solutions. </li>
+<li> $(A - \lambda I)$ has an infinite null space. </li>
+<li> $(A - \lambda I)$ is not invertible. </li>
+<li> $\det (A - \lambda I) = 0$. </li>
+<li> $\lambda$ is a solution to the characteristic equation. </li>
+</ul>
+
+<h2>Example</h2>
+
+<p>
+$A = \begin{bmatrix} 1&2\\3&4 \end{bmatrix}$.
+The characteristic polynomial is
+$$ \det \begin{bmatrix} 1-\lambda&2\\3&4-\lambda \end{bmatrix}
+  \ =\  (1 - \lambda)(4 - \lambda) - 6
+  \ =\  \lambda^2 -5\lambda - 2.$$
+</p>
+
+<h2>Example</h2>
+
+<p>
+$A = \begin{bmatrix} 1&2&3\\0&1&0\\4&5&6 \end{bmatrix}$.
+The characteristic polynomial is
+$$\det \begin{bmatrix} 1-\lambda&2&3\\0&1-\lambda&0\\4&5&6-\lambda
+       \end{bmatrix}.$$
+Use cofactor expansion along the second row.
+$$(1 - \lambda) ( (1 - \lambda)(6 - \lambda) - (3)(4) )
+=
+-6 - \lambda + 8 \lambda^2 - \lambda^3$$
+</p>
+
+<h2>Warning</h2>
+
+<ul>
+<li> Row operations on $A$ would mess up the characteristic polynomial. </li>
+<li> You <span class=green>could</span> use row operations on $A - \lambda I$
+     to compute the determinant,
+     but it is probably best to use a cofactor expansion.
+     With $\lambda$s floating around,
+     it is hard to tell if something is a pivot.  </li>
+</ul>
+
+<p class=green>
+[Added later:
+after doing more examples,
+it turns out that I prefer
+to carefully combine row operations and cofactor expansion.]
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+What is the characteristic polynomial of
+$\begin{bmatrix}0&0&0\\0&0&0\\0&0&0\end{bmatrix}$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span>&nbsp; $0$ </li>
+<li class=inline> <span class=red>B</span>&nbsp; $\lambda^3$ </li>
+<li class=inline> <span class=red>C</span>&nbsp; $-\lambda^3$ </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+If $A$ has characteristic polynomial
+$-\lambda^3 - 2\lambda^2 + 1$,
+is $1$ an eigenvalue?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span>&nbsp; Yes. </li>
+<li class=inline> <span class=red>B</span>&nbsp; No. </li>
+</ul>
+
+<h2>Review of polynomials</h2>
+
+<p>
+Homework: review or learn some basics about polynomials
+and how to factor them.
+</p>
+
+<p>
+eg., suppose the characteristic equation is
+$$\lambda^4 - 3\lambda^3 + \lambda^2 + 4 = 0.$$
+Guess and check integers that divide $4$.
+</p>
+
+<p>
+It turns out $\lambda = 2$ is an eigenvalue.
+Therefore $\lambda - 2$ is a factor.
+$$\lambda^4 - 3\lambda^3 + \lambda^2 + 4
+   = (\lambda - 2)(\lambda^3 - \lambda^2 - \lambda - 2).$$
+</p>
+
+<p>
+It turns out $\lambda = 2$
+is a root of $\lambda^3 - \lambda^2 - \lambda - 2$,
+so we can factor out $\lambda - 2$ a second time.
+$$\lambda^4 - 3\lambda^3 + \lambda^2 + 4
+   = (\lambda - 2)(\lambda - 2)(\lambda^2 + \lambda + 1).$$
+</p>
+
+<p>
+$\lambda ^2 + \lambda + 1$ has no real roots
+because $1^2 - 4(1)(1) &lt; 0$.
+</p>
+
+<h2>Example 4 (page 279)</h2>
+
+<p>
+The characteristic polynomial of a $6 \times 6$ matrix
+is $\lambda^6 - 4\lambda^5 - 12\lambda^4$.
+Find the eigenvalues and their multiplicities.
+</p>
+
+<p>
+$$\lambda^6 - 4\lambda^5 - 12\lambda^4 = \lambda^4(\lambda-6)(\lambda+2)$$
+</p>
+
+<p>
+The eigenvalues are $0, 6, -2$.
+</p>
+
+<p>
+The eigenvalue $0$ has multiplicity four.
+The other eigenvalues have multiplicity one.
+</p>
+
+</body>
+</html>

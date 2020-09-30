@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 13</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;4.1: Vector spaces and subspaces</h1>
+
+<p>
+<b>TL;DR</b>
+A vector space is a set of vectors
+with rules to add and scalar multiply
+that satisfy some axioms.
+A subspace is a subset that is also a vector space.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+Homework 3 is due tonight.
+Homework 4 is due next week.
+</p>
+
+<h2>Background knowledge: sets and functions</h2>
+
+<p> A set is a bunch of things.  </p>
+
+<p>
+The textbook sometimes talks about
+<span class=red>implicit</span> vs
+<span class=red>explicit</span>
+ways to think about sets.
+I don't think these words have a precise meaning,
+but they have to do with being able to answer two types of questions.
+</p>
+
+<ul>
+<li> <span class=red>Implicit:</span> Is [blah] in [the set]? </li>
+<li> <span class=red>Explicit:</span> 
+     Give a general expression for the elements of [the set]. </li>
+</ul>
+
+<p>
+A function is like a machine that takes an input and spits out an output.
+</p>
+
+<p> eg. the cosine button on your scientific calculator.  </p>
+
+<p>
+Your calculator also has buttons like "+"
+that take two inputs and give an output.
+That's a
+<span class=green>function of two variables</span>.
+</p>
+
+<h2>Vector space</h2>
+
+<p>
+The main examples of vector spaces are:
+$$\mathbb{R}^1, \mathbb{R}^2, \mathbb{R}^3, \dots$$
+A vector space consists of:
+</p>
+
+<ul>
+<li> a set of <span class=green>vectors</span>, </li>
+<li> a special <span class=green>zero vector</span>, </li>
+<li> <span class=green>addition</span>:
+     "vector plus vector" is a vector, </li>
+<li> <span class=green>scalar multiplication</span>:
+     "number times vector" is a vector. </li>
+<li> addition and scalar multiplication should satisfy
+     the ten axioms on page 192. </li>
+</ul>
+
+<p> If I want to tell you a vector space, I have to tell you: </p>
+
+<ul>
+<li> What are the vectors? </li>
+<li> Which one is the zero vector? </li>
+<li> How do you add? </li>
+<li> How do you scalar multiply? </li>
+</ul>
+
+<p>
+Then you should check three important things.
+</p>
+
+<ul style="border: 5px solid pink">
+  <li> if $\mathbf{v} \in V$
+       then $\mathbf{v} + \mathbf{0} = \mathbf{v}$, </li>
+  <li> if $\mathbf{u}, \mathbf{v} \in V$
+       then $\mathbf{u} + \mathbf{v} \in V$, </li>
+  <li> if $c \in \mathbb{R}$ and $\mathbf{v} \in V$
+       then $c \mathbf{v} \in V$. </li>
+</ul>
+
+I will not ask you to check or memorize the other seven axioms,
+but here they are anyway:
+</p>
+
+<ul>
+<li> $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$ </li>
+<li> $(\mathbf{u} + \mathbf{v}) + \mathbf{w}
+     = \mathbf{u} + (\mathbf{v} + \mathbf{w})$ </li>
+<li> $\mathbf{v} + (-\mathbf{v}) = \mathbf{0}$ </li>
+<li> $c(\mathbf{u} + \mathbf{v}) = c\mathbf{u} + c\mathbf{v}$ </li>
+<li> $(c+d)\mathbf{v} = c\mathbf{v} + d\mathbf{v}$ </li>
+<li> $c(d\mathbf{v}) = (cd)\mathbf{v}$ </li>
+<li> $1\mathbf{v} = \mathbf{v}$ </li>
+</ul>
+
+
+<h2>Subspaces</h2>
+
+<p>
+A sub<span class=red>set</span> of $\mathbb{R}^n$
+is a collection of some
+(but not necessarily all)
+of the vectors in $\mathbb{R}^n$.
+</p>
+
+<p> A sub<span class=red>space</span> $V$ of $\mathbb{R}^n$
+is a subset that also satisfies three important things: </p>
+
+<ul style="border: 5px solid pink">
+  <li> $\mathbf{0} \in V$, </li>
+  <li> if $\mathbf{u}, \mathbf{v} \in V$
+       then $\mathbf{u} + \mathbf{v} \in V$, </li>
+  <li> if $c \in \mathbb{R}$ and $\mathbf{v} \in V$
+       then $c \mathbf{v} \in V$. </li>
+</ul>
+
+<p>
+A subspace of $\mathbb{R}^n$
+is also a vector space in its own right,
+because the other axioms are automatically true.
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+The unit disk centered at the origin of $\mathbb{R}^2$ is:
+</p>
+
+<ul>
+<li> <span class=red>A:</span> a subset of $\mathbb{R}^2$. </li>
+<li> <span class=red>B:</span> a subspace of $\mathbb{R}^2$. </li>
+<li> <span class=red>C:</span> All of the above. </li>
+<li> <span class=red>D:</span> None of the above. </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+$\mathbb{R}^2$ is:
+</p>
+
+<ul>
+<li> <span class=red>A:</span> a subset of $\mathbb{R}^3$. </li>
+<li> <span class=red>B:</span> a subspace of $\mathbb{R}^3$. </li>
+<li> <span class=red>C:</span> All of the above. </li>
+<li> <span class=red>D:</span> None of the above. </li>
+</ul>
+
+<h2>Theorem 1</h2>
+
+<p>
+Suppose $A$ is an $m \times n$ matrix.
+</p>
+
+<p class=boxed style="text-decoration:line-through">
+The span of the columns of A
+is a subspace of R<sup>n</sup>.
+</p>
+
+<p class=boxed>
+The span of the columns of $A$
+is a subspace of $\mathbb{R}^m$.
+</p>
+
+<p>
+(Typo corrected later:
+it's a subspace of $\mathbb{R}^m$,
+where $m$ is the number of rows in $A$).
+</p>
+
+<h2>Subspaces of $\mathbb{R}^3$</h2>
+
+<p>
+The biggest possible subspace of $\mathbb{R}^3$
+is just $\mathbb{R}^3$ itself!
+</p>
+
+<p>
+The smallest possible subspace of $\mathbb{R}^3$
+is just a dot at the origin.
+  $$V =
+    \left\{ \left[ \begin{array}{c} 0 \\ 0 \\ 0 \end{array}
+    \right] \right\}$$
+</p>
+
+<p>
+In between:
+</p>
+
+<ul>
+<li> A straight line through the origin. </li>
+<li> A flat plane through the origin. </li>
+</ul>
+
+<p>
+Secret knowledge: these are the only possibilities.
+A similar story holds for subspaces of $\mathbb{R}^n$.
+</p>
+
+<h2>Exotic vector spaces</h2>
+
+<p>
+The only vector spaces we need in this course are $\mathbb{R}^n$,
+and subspaces of $\mathbb{R}^n$.
+Other vector spaces are important in calculus, eg.
+</p>
+
+<ul>
+<li> The set of sequences of real numbers. </li>
+<li> The set of all functions $\mathbb{R} \to \mathbb{R}$. </li>
+</ul>
+
+<h2>Summary of &sect;4.1</h2>
+
+<p>
+A vector space is a set of vectors
+that you can add and scalar multiply.
+</p>
+
+<p>
+A subspace is a subset
+where you can add and scalar multiply,
+always staying in the subset.
+</p>
+
+<p>
+Every subspace of $\mathbb{R}^n$
+"looks like" $\mathbb{R}^m$ ($m \le n$)
+going through the origin,
+maybe tilted at some angle.
+</p>
+
+<p>
+There are no homework questions
+directly about this section,
+but the concepts will be helpful later.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 22</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;5.1 Eigenvectors and eigenvalues</h1>
+
+<p><b>TL;DR</b>&nbsp;
+A matrix times an eigenvector just scales by an eigenvalue.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+Exams will be graded by Friday.
+</p>
+
+<h2>Definition</h2>
+
+<p class=big>
+$$A \mathbf{x} = \lambda \mathbf{x}$$
+</p>
+
+<ul>
+<li> $A$ is an $n \times n$ matrix. </li>
+<li> $\mathbf{x}$ is a vector in $\mathbb{R}^n$. </li>
+<li> $\mathbf{x} \neq \mathbf{0}$.
+<li> $\lambda$ is a number. </li>
+</ul>
+
+<p>
+Then
+$\mathbf{x}$ is called an <span class=red>eigenvector</span>,
+and
+$\lambda$ is called an <span class=red>eigenvalue</span>.
+</p>
+
+<h2>Warning</h2>
+
+<ul>
+<li> Do not cancel the $\mathbf{x}$s from $A\mathbf{x}=\lambda\mathbf{x}$. </li>
+<li> Do not solve $[A|\lambda \mathbf{x}]$. </li>
+<li> Do not row reduce $A$ to find its eigenvalues and eigenvectors. </li>
+</ul>
+
+<h2>Motivation</h2>
+
+<p>
+The equation $A \mathbf{x} = \lambda \mathbf{x}$ is very important,
+but it is hard to explain why until later.
+Here are some vague examples.
+</p>
+
+<p>
+<span class=red>Geometry:</span>
+eg. "$A \mathbf{x} = 2 \mathbf{x}$" means
+the transformation stretches $\mathbf{x}$ to double its length,
+without rotating.
+</p>
+
+<p>
+<span class=red>Markov chains:</span>
+eg. last time we saw
+$$\begin{bmatrix}.9&.2\\.1&.8 \end{bmatrix}^{1000} 
+\begin{bmatrix}3\\0\end{bmatrix}
+\approx \begin{bmatrix}2\\1 \end{bmatrix}$$
+$\begin{bmatrix}2\\1\end{bmatrix}$
+is an eigenvector with eigenvalue $1$.
+</p>
+
+<p>
+<span class=red>Quantum mechanics:</span>
+an <span class=green>observable</span>
+is a certain kind of linear transformation.
+When you observe it,
+it randomly chooses an eigenvector.
+</p>
+
+<p>
+<span class=red>Shirts:</span>
+</p>
+
+<img
+src="https://rlv.zcache.co.nz/world_eigenvalue_day_dark_apparel_long_sleeve_t_shirt-rc60f3a0295bb469ea23f690a1263b9ac_k2llm_630.jpg"
+alt="World eigenvalue day shirt"
+height=400>
+
+<p>
+<span class=red>The 1987 movie "No way out":</span>
+</p>
+
+<iframe width="560" height="315"
+ src="https://www.youtube.com/embed/m4SBMyd0yEQ"></iframe>
+
+<h2>Example 1</h2>
+
+<p>
+$\begin{bmatrix} 3&-2\\1&0 \end{bmatrix}
+\begin{bmatrix}2\\1 \end{bmatrix}
+= \begin{bmatrix}4\\2 \end{bmatrix}
+= 2\begin{bmatrix}2\\1 \end{bmatrix}$
+</p>
+
+<h2>Example 2</h2>
+
+<p class=boxed>
+Is $\begin{bmatrix} 6\\-5 \end{bmatrix}$
+an eigenvector of
+$\begin{bmatrix} 1&6\\5&2 \end{bmatrix}$?
+</p>
+
+<p>
+Just multiply!
+$$
+\begin{bmatrix} 1&6\\5&2 \end{bmatrix}
+\begin{bmatrix} 6\\-5 \end{bmatrix}
+=
+\begin{bmatrix} -24\\20 \end{bmatrix}$$
+So yes it is an eigenvector
+with eigenvalue $-4$.
+</p>
+
+<h2>Example 3</h2>
+
+<p class="boxed">
+Is $2$ an eigenvalue of
+$ \left[ \begin{array}{cc} 1 & -2 \\ 1 & 4 \end{array} \right]$?
+</p>
+
+<p>
+ie., is there a non-trivial solution to
+$ \left[ \begin{array}{cc} 1 & -2 \\ 1 & 4 \end{array} \right]
+   \left[ \begin{array}{c} x_1 \\ x_2 \end{array} \right]
+   = \color{red}{2} \left[ \begin{array}{c} x_1 \\ x_2 \end{array} \right]$?
+</p>
+
+<p>
+Multiply out:
+</p>
+
+<table>
+<tr> <td> $1 x_1$ </td> <td>$+$</td> <td>$(-2) x_2$ </td> <td>$=$</td> <td>$\color{red}{2} x_1$</td> </tr>
+<tr> <td> $1 x_1$ </td> <td>$+$</td> <td>$4 x_2$ </td> <td>$=$</td> <td>$\color{red}{2} x_2$</td> </tr>
+</table>
+
+<p>
+Rearrange:
+</p>
+
+<table>
+<tr> <td> $(1 - \color{red}{2}) x_1$ </td> <td>$+$</td> <td> $(-2) x_2$ </td> <td> $=0$ </td> </tr>
+<tr> <td> $1 x_1$ </td> <td>$+$</td> <td>$(4 - \color{red}{2}) x_2$</td> <td> $=0$ </td> </tr>
+</table>
+
+<p>
+Solve:
+$$\left[ \begin{array}{cc|c}
+  1 - \color{red}{2} & -2 & 0 \\
+  1 & 4 - \color{red}{2} & 0
+\end{array} \right]$$
+</p>
+
+<p>
+The general solution:
+$$x_2 \left[ \begin{array}{c} -2 \\ 1 \end{array} \right]$$
+</p>
+
+<p>
+Check:
+</p>
+
+<p style="text-align:center">
+$ \left[ \begin{array}{cc} 1 & -2 \\ 1 & 4 \end{array} \right]
+ \left[ \begin{array}{c} -2 \\ 1 \end{array} \right]
+= \left[ \begin{array}{c} -4 \\ 2 \end{array} \right]$
+<span style="font-size: 2em; color: #ff00aa; " >&#10003;</span>
+</p>
+
+<p>
+So yes, $2$ is an eigenvalue.
+</p>
+
+
+
+<p>
+The set of eigenvectors with eigenvalue $2$
+is the same as the null space of $A - 2I$,
+(except $\mathbf{0}$ is in the null space
+but is not an eigenvector).
+</p>
+
+<h2>Eigenspace</h2>
+
+<p>
+The <span class=red>eigenspace</span>
+of $A$ corresponding to $\lambda$
+is the null space of $A - \lambda I$.
+</p>
+
+<p>
+$$\begin{align}
+A \mathbf{x} = \lambda \mathbf{x}
+&\Leftrightarrow A \mathbf{x} - \lambda \mathbf{x} = \mathbf{0} \\
+&\Leftrightarrow A \mathbf{x} - \lambda I \mathbf{x} = \mathbf{0} \\
+&\Leftrightarrow (A - \lambda I)\mathbf{x} = \mathbf{0} \\
+&\Leftrightarrow \mathbf{x} \in \text{Null}(A - \lambda I)
+\end{align}
+$$
+</p>
+
+<p>
+The eigenspace corresponding to $\lambda$
+is the set of all eigenvectors with eigenvalue $\lambda$,
+and also the zero vector.
+</p>
+
+<h2>Theorem 1</h2>
+
+<p>
+The eigenvalues of a triangular matrix
+are the entries on its main diagonal.
+</p>
+
+<h2>Theorem 2</h2>
+
+<p>
+Suppose $\mathbf{v}_1, \dots, \mathbf{v}_n$ are eigenvectors,
+and $\lambda_1, \dots, \lambda_n$ are their eigenvalues.
+If $\lambda_1, \dots, \lambda_n$ are all different numbers
+then $\{\mathbf{v}_1, \dots, \mathbf{v}_n\}$
+is linearly independent.
+</p>
+
+<p>
+eg., if $A \mathbf{u} = \mathbf{u}$
+and $A \mathbf{v} = 2 \mathbf{v}$
+and $\mathbf{u}$ and $\mathbf{v}$ are non-zero
+then neither of them is a multiple of the other.
+</p>
+
+<p>
+If also $A \mathbf{w} = 3 \mathbf{w}$
+and $\mathbf{w}$ is non-zero
+then $\mathbf{w}$ is not
+a linear combination of $\mathbf{u}$ and $\mathbf{v}$.
+</p>
+
+<h2>Difference equations</h2>
+
+<p>
+Save this for Math 4B.
+</p>
+
+<h2>Clicker question</h2>
+<p>
+What are the eigenvalues of
+$\begin{bmatrix} 1&0\\0&1 \end{bmatrix}$?
+</p>
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> Both. </li>
+<li class=inline> <span class=red>D</span> Neither. </li>
+</ul>
+
+<h2>Clicker question</h2>
+<p>
+What are the eigenvalues of
+$\begin{bmatrix} 0&0\\0&0 \end{bmatrix}$?
+</p>
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> Both. </li>
+<li class=inline> <span class=red>D</span> Neither. </li>
+</ul>
+
+<h2>Clicker question</h2>
+<p>
+Is $\begin{bmatrix} 1\\1 \end{bmatrix}$ an eigenvector of
+$\begin{bmatrix} 1&1\\1&1 \end{bmatrix}$?
+</p>
+
+<h2>Clicker question</h2>
+<p>
+Is $0$ an eigenvalue of
+$\begin{bmatrix} 1&1\\1&1 \end{bmatrix}$?
+</p>
+
+
+
+
+</body>
+</html>

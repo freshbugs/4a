@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 27</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;6.1 Inner product, length, and orthogonality</h1>
+
+<h2>Announcements</h2>
+
+<p>
+The final exam is Wednesday December 11, 4-7pm.
+The rules are the same as for the second midterm.
+It covers:
+</p>
+
+<ul>
+<li> Chapter 1 sections 1&ndash;7 (linear equations...) </li>
+<li> Chapter 2 sections 1&ndash;2 (matrix algebra) </li>
+<li> Chapter 3 sections 1&ndash;2 (determinants) </li>
+<li> Chapter 4 sections 1&ndash;7
+     (subspaces, basis, dim, linear transf's...) </li>
+<li> Chapter 5 sections 1&ndash;3
+     (eigenthings and diagonalization...) </li>
+<li> Chapter 6 section 1 and 5 (orthogonality...) </li>
+</ul>
+
+<p>
+I found an exam I wrote five years ago and put it on Gauchospace.
+</p>
+
+<h2>Inner product</h2>
+
+<p>
+The inner product is also called the dot product.
+If $\mathbf{u}$ and $\mathbf{v}$ are vectors in $\mathbb{R}^n$
+then
+$$\mathbf{u} \cdot \mathbf{v} = \mathbf{u}^T \mathbf{v}.$$
+<span class=green>
+(Well actually,
+$\mathbf{u} \cdot \mathbf{v}$ is a number,
+and $\mathbf{u}^T \mathbf{v}$ is a $1 \times 1$ matrix.
+We ignore this difference.)
+</span>
+</p>
+
+<p>
+Example:
+$$
+\begin{bmatrix} 0\\1\\2 \end{bmatrix} \cdot
+\begin{bmatrix} 1\\4\\-3 \end{bmatrix}
+\ =\ 
+\begin{bmatrix} 0&1&2 \end{bmatrix}
+\begin{bmatrix} 1\\4\\-3 \end{bmatrix}
+\ =\  -2.
+$$
+</p>
+
+<p>
+Related terms:
+</p>
+
+<ul>
+<li> <span class=red>length</span>, or <span class=red>norm:</span>
+     $\Vert \mathbf{v} \Vert = \sqrt{\mathbf{v} \cdot \mathbf{v}}$. </li>
+<li> <span class=red>unit vector:</span> a vector of length $1$. </li>
+<li> <span class=red>normalize:</span> 
+     $\frac{1}{\Vert \mathbf{v} \Vert} \mathbf{v}$. </li>
+<li> <span class=red>distance:</span>
+     $d(\mathbf{u}, \mathbf{v}) = \Vert \mathbf{u} - \mathbf{v} \Vert$. </li>
+<li> <span class=red>orthogonal vectors:</span>
+     $\mathbf{u} \cdot \mathbf{v} = 0$. </li>
+<li> <span class=red>orthogonal complement:</span>
+     $W^\perp$ is the set of all vectors that are
+     orthogonal to every vector in $W$. </li>
+</ul>
+
+<h2>Theorem 1</h2>
+
+<p class=boxed>
+The inner product
+is symmetric, bilinear, and positive definite.
+</p>
+
+<ul>
+<li> $\mathbf{u} \cdot \mathbf{v} = \mathbf{v} \cdot \mathbf{u}$ </li>
+<li> $(\mathbf{u} + \mathbf{v}) \cdot \mathbf{w}
+     = \mathbf{u} \cdot \mathbf{w} + \mathbf{v} \cdot \mathbf{w}$ </li>
+<li> $(c \mathbf{u}) \cdot \mathbf{v} = c(\mathbf{u} \cdot \mathbf{v}$) </li>
+<li> $\mathbf{u} \cdot \mathbf{u} \gt 0$ &nbsp; if &nbsp;
+     $\mathbf{u} \neq \mathbf{0}$ </li>
+<li> $\mathbf{u} \cdot \mathbf{u} = 0$ &nbsp; if &nbsp;
+     $\mathbf{u} = \mathbf{0}$ </li>
+</ul>
+
+<h2>Theorem 2 (Pythagoras)</h2>
+
+<p class=boxed>
+$\mathbf{u}$ and $\mathbf{v}$ are orthogonal
+if and only if
+$\Vert \mathbf{u} + \mathbf{v} \Vert^2 =
+ \Vert \mathbf{u} \Vert^2 + \Vert \mathbf{v} \Vert^2$.
+</p>
+
+<p>Compare:</p>
+
+<p class=boxed>
+For a right-angled triangle,
+the square of the hypotenuse
+is equal to the sum of the squares of the other two sides.
+</p>
+
+<iframe width="560" height="315"
+ src="https://www.youtube.com/embed/HAYviNTJxQc"></iframe>
+
+<h2>Theorem 3</h2>
+
+<p class=boxed>
+The row and null space of a matrix are orthogonal complements.
+</p>
+
+<p>
+A vector is in the null space of $A$
+if and only if it is orthogonal to every row of $A$.
+</p>
+
+<p>
+Orthogonal to every row
+implies orthogonal to every linear combination of rows.
+</p>
+
+
+<h2>Clicker question</h2>
+
+<p>
+$\begin{bmatrix}1\\2\end{bmatrix}$ is orthogonal to
+$\begin{bmatrix}-4\\k\end{bmatrix}$ when $k =$
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $1$ </li>
+<li class=inline> <span class=red>B</span> $2$ </li>
+<li class=inline> <span class=red>C</span> $3$ </li>
+<li class=inline> <span class=red>D</span> $4$ </li>
+<li class=inline> <span class=red>E</span> other </li>
+</ul>
+
+<h2>&sect;6.2 Orthogonal sets (not on the exam)</h2>
+
+<ul>
+<li> Theorem 4: Orthogonal and non-zero implies linearly independent. </li>
+<li> Theorem 5: It is easy to find $[\mathbf{v}]_\mathcal{B}$
+     for an orthogonal basis. </li>
+<li> Theorem 5&frac12;:
+      There is a formula for orthogonal projection onto a vector. </li>
+<li> Theorem 6: The columns of $U$ are orthonormal if and only if
+     $U^T U = I$. </li>
+<li> Theorem 7: If $U$ has orthonormal columns
+     then it preserves dot products. </li>
+</ul>
+
+<h2>&sect;6.3 Orthogonal projections (not on the exam)</h2>
+
+<ul>
+<li> Theorem 8: There is an orthogonal projection map
+     $\operatorname{proj}_W$ from $\mathbb{R}^n$
+     onto any subspace $W$. </li>
+<li> Theorem 8&frac12;: If you have an orthogonal basis for $W$
+     then there is a formula for $\operatorname{proj}_W$. </li>
+<li> Theorem 9: $\operatorname{proj}_W(\mathbf{y})$
+     is the vector in $W$ that is closest to $\mathbf{y}$. </li>
+<li> Theorem 10: If you have an orthonormal basis for $W$
+     then there is a formula for $\operatorname{proj}_W$. </li>
+</ul>
+
+<h2>&sect;6.4 The Gram-Schmidt process (not on the exam)</h2>
+
+<ul>
+<li> Theorem 11: You can turn any basis for $W$ into an orthonormal basis. </li>
+<li> Theorem 12: Every matrix has a "QR" factorization. </li>
+</ul>
+
+<h2>&sect;6.5 Least-squares problems</h2>
+
+<p>
+Suppose $A \mathbf{x} = \mathbf{b}$ has no solution.
+</p>
+
+<p>
+$\mathbf{x'}$ is a
+<span class=green>least-squares</span> solution
+if
+$\Vert \mathbf{b} - A \mathbf{x'} \Vert$
+is as small as possible.
+</p>
+
+<h2>Theorem 13</h2>
+
+<p class=boxed>
+$\mathbf{x'}$ is a least-squares solution to $A \mathbf{x} = \mathbf{b}$
+if and only if
+it is a solution to
+$A^T A \mathbf{x} = A^T \mathbf{b}$.
+</p>
+
+</body>
+</html>

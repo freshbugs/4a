@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 20</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>Exam answers</h1>
+
+<h2>Question 1</h2>
+
+<p>
+Calculate
+$\left(\begin{bmatrix}0&0&1\\0&0&0\\0&0&0\end{bmatrix}
++ \begin{bmatrix}1&0&1\\0&1&1\\0&1&2\end{bmatrix}^{-1} \right)
+\begin{bmatrix}0\\1\\1\end{bmatrix}$.
+</p>
+
+<p>
+Straightforward calculation.
+<a href="https://www.wolframalpha.com/input/?i=%28%7B%7B0%2C0%2C1%7D%2C%7B0%2C0%2C0%7D%2C%7B0%2C0%2C0%7D%7D%2B%7B%7B1%2C0%2C1%7D%2C%7B0%2C1%2C1%7D%2C%7B0%2C1%2C2%7D%7D%5E-1%29.%7B%7B0%7D%2C%7B1%7D%2C%7B1%7D%7D">
+You should get</a>
+$\begin{bmatrix}1\\1\\0\end{bmatrix}$.
+</p>
+
+<h2>Question 2</h2>
+
+<p>
+Let $A = \begin{bmatrix}1&1&1\\1&2&2\\1&2&3\end{bmatrix}$.
+</p>
+
+<p><span class=red>(a)</span> Calculate the determinant of $A$.</p>
+
+<p>
+Straightforward calculation, using any of various methods.
+<a href="https://www.wolframalpha.com/input/?i=determinant+of+%7B%7B1%2C1%2C1%7D%2C%7B1%2C2%2C2%7D%2C%7B1%2C2%2C3%7D%7D">You should get</a> $1$.
+</p>
+
+<p><span class=red>(b)</span> Is $A$ invertible? (Say why or why not.)</p>
+
+<p>Yes, because its determinant is not zero.</p>
+
+<h2>Question 3</h2>
+
+<p>
+Let $A = \begin{bmatrix} -6&12\\-3&6 \end{bmatrix}$
+and $\mathbf{v} = \begin{bmatrix} 2\\1 \end{bmatrix}$.
+</p>
+
+<p><span class=red>(a)</span>
+Is $\mathbf{v}$ in the null space of $A$?
+</p>
+
+<p>
+Yes, because
+$$A \mathbf{v}
+\ =\  \begin{bmatrix} -6&12\\-3&6 \end{bmatrix}
+   \begin{bmatrix} 2\\1 \end{bmatrix}
+\ =\   2 \begin{bmatrix} -6\\-3 \end{bmatrix}
+   + \begin{bmatrix} 12\\6 \end{bmatrix}
+\ =\   \begin{bmatrix} 0\\0 \end{bmatrix}.
+$$
+</p>
+
+<p><span class=red>(b)</span>
+Is $\mathbf{v}$ in the column space of $A$?
+</p>
+
+<p>
+Yes, because
+$\begin{bmatrix} 2\\1 \end{bmatrix}
+  = 0 \begin{bmatrix} -6\\-3 \end{bmatrix}
+  + \frac{1}{6} \begin{bmatrix} 12\\6 \end{bmatrix}$
+is a linear combination of the columns.
+</p>
+
+<h2>Question 4</h2>
+
+<p>
+Find a basis for the null space of
+$\begin{bmatrix}1&1&1\\1&1&1\\1&1&1\end{bmatrix}$.
+</p>
+
+<p>
+The null space is the set of solutions to
+$$\begin{bmatrix}1&1&1\\1&1&1\\1&1&1\end{bmatrix}
+  \begin{bmatrix}x\\y\\z\end{bmatrix}
+  = \begin{bmatrix}0\\0\\0\end{bmatrix}.$$
+We could row reduce, but obviously
+it is equivalent to the equation (repeated three times)
+$$x + y + z =0.$$
+The general solution is $x = -y - z$.
+$$
+\begin{bmatrix} x \\ y \\ z \end{bmatrix}
+\ =\  \begin{bmatrix} -y-z \\ y \\ z \end{bmatrix}
+\ =\  y\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix}
++ z\begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix}.
+$$
+So the null space is spanned by the set
+$$\left\{
+\begin{bmatrix} -1 \\ 1 \\ 0 \end{bmatrix},
+\begin{bmatrix} -1 \\ 0 \\ 1 \end{bmatrix} \right\}.$$
+This set is also linearly independent,
+so it is a basis for the null space.
+</p>
+
+<h2>Question 5</h2>
+
+<p>
+Suppose $\mathcal{B} = \{ \mathbf{b}_1, \mathbf{b}_2 \}$
+is a basis for a vector space $V$.
+</p>
+
+<p><span class=red>(a)</span>
+What is $[ \mathbf{b}_2 ]_\mathcal{B}$?
+</p>
+
+<p>
+Two ways to ask almost exactly the same question:
+</p>
+
+<div class=boxed>
+<ul>
+<li> What is $[\mathbf{v}]_\mathcal{B}$? </li>
+<li> Please write $\mathbf{v}$ in terms of the basis vectors. </li>
+</ul>
+</div>
+
+<p class=green>
+(The only difference is your
+answer is a column vector.)
+</p>
+
+<p>
+Obviously
+$\mathbf{b}_2 = 0 \mathbf{b}_1 + 1 \mathbf{b}_2$,
+<span class=green>
+so
+$[ \mathbf{b}_2 ]_\mathcal{B}
+= \begin{bmatrix} 0\\1 \end{bmatrix}$.
+</span>
+</p>
+
+<p><span class=red>(b)</span>
+If $\mathbf{v} \in V$
+and $[ \mathbf{v} ]_\mathcal{B} = \begin{bmatrix} 1\\1 \end{bmatrix}$
+then what is $[\mathbf{v} + \mathbf{b}_2]_\mathcal{B}$?
+</p>
+
+<p>
+The coordinate mapping is a linear transformation, so
+$$[\mathbf{v} + \mathbf{b}_2]_\mathcal{B}
+  \ =\  [\mathbf{v}]_\mathcal{B} + [\mathbf{b}_2]_\mathcal{B}
+  \ =\  \begin{bmatrix} 1 \\ 1 \end{bmatrix}
+  + \begin{bmatrix} 0 \\ 1 \end{bmatrix}
+  \ =\  \begin{bmatrix} 1 \\ 2 \end{bmatrix}.$$
+</p>
+
+<p>
+<span class=red>OR:</span>
+Remember the two ways to ask almost exactly the same question.
+</p>
+
+<p>
+Apparently $\mathbf{v} = \mathbf{b}_1 + \mathbf{b}_2$.
+Thus $\mathbf{v} + \mathbf{b}_2 = \mathbf{b}_1 + 2\mathbf{b}_2$,
+so
+$[\mathbf{v} + \mathbf{b}_2]_\mathcal{B}
+  = \begin{bmatrix} 1 \\ 2 \end{bmatrix}$.
+</p>
+
+<h2>Question 6</h2>
+
+<p>
+Answer the following True or False,
+and give a short explanation.
+</p>
+
+<p><span class=red>(a)</span>
+If $\mathbf{u}, \mathbf{v}, \mathbf{w}$ are vectors in $\mathbb{R}^4$
+then $\{ \mathbf{u}, \mathbf{v}, \mathbf{w} \}$
+could not possibly span $\mathbb{R}^4$.
+</p>
+
+<p>
+<b>True.</b>
+The dimension of $\mathbb{R}^4$ is $4$,
+so fewer than $4$ vectors cannot span it.
+</p>
+
+<p><span class=red>(b)</span>
+The function $T \colon \mathbb{R}^2 \to \mathbb{R}^2$
+given by
+$T \begin{bmatrix}x\\y\end{bmatrix} = \begin{bmatrix}x+1\\y\end{bmatrix}$
+is a linear transformation.
+</p>
+
+<p>
+<b>False.</b>
+It does not map the zero vector to the zero vector.
+$$T \begin{bmatrix}0\\0\end{bmatrix} = \begin{bmatrix}1\\0\end{bmatrix}
+\neq \begin{bmatrix}0\\0\end{bmatrix}.$$
+</p>
+
+<p>
+(Also, it does not respect addition or scalar multiplication.)
+</p>
+
+<p><span class=red>(c)</span>
+The set of solutions to
+$\begin{bmatrix}1&2\\3&4\end{bmatrix} \mathbf{x}
+  = \begin{bmatrix}1\\1\end{bmatrix}$
+is a subspace of $\mathbb{R}^2$.
+</p>
+
+<p>
+<b>False.</b>
+It does not include the zero vector, because
+$$\begin{bmatrix}1&2\\3&4\end{bmatrix}
+  \begin{bmatrix}0\\0\end{bmatrix}
+  \neq \begin{bmatrix}1\\1\end{bmatrix}.$$
+</p>
+
+<p>
+(Also, it is not closed under addition or scalar multiplication.)
+</p>
+
+<hr/>
+
+<h2>Review of &sect;4.4</h2>
+
+<p>
+If $\mathbf{v} = \left[ \begin{array}{c} 1 \\ 2 \end{array} \right]$
+and
+$\left[ \mathbf{v} \right]_\mathcal{B} =
+ \left[ \begin{array}{c} 3 \\ 4 \end{array} \right]$
+then:
+</p>
+
+<ul>
+<li class="padded"> <span class="red">A:</span>
+  $\left[ \begin{array}{c} 1 \\ 2 \end{array} \right] = 3 \mathbf{b}_1 + 4 \mathbf{b}_2$.
+</li>
+<li class="padded"> <span class="red">B:</span>
+  $\left[ \begin{array}{c} 3 \\ 4 \end{array} \right] = 1 \mathbf{b}_1 + 2 \mathbf{b}_2$.
+</li>
+</ul>
+
+<h2>Review of &sect;4.5</h2>
+
+<p>
+The dimension of a vector space
+is the number of vectors in a basis.
+</p>
+
+<h2>&sect;4.6 Rank</h2>
+
+<p>
+For this section, $A$ is an $m \times n$ matrix.
+</p>
+
+<p>
+It does not have to be square,
+like it did for invertibility or determinants.
+</p>
+
+<h2>Row space</h2>
+
+<p> The row space of $A$ is the span of its rows.  </p>
+
+<p> It is a set of row vectors instead of the usual column vectors. </p>
+
+<h2>Theorem 13</h2>
+
+<p class=boxed>
+To find a basis for the row space of $A$,
+put it in echelon form,
+and delete any rows of zeros.
+(Unlike with Col$A$,
+you do not go back to the original matrix.)
+</p>
+
+<h2>Theorem 14a (rank)</h2>
+
+<p>
+These three numbers are all the same:
+</p>
+
+<ul>
+<li> The dimension of the column space of $A$. </li>
+<li> The dimension of the row space of $A$. </li>
+<li> The number of pivots
+     when $A$ is put in echelon or reduced echelon form. </li>
+</ul>
+
+<p>
+This number is called the <span class=red>rank</span> of $A$.
+</p>
+
+<p class=green>
+Remember, a pivot of echelon form
+is the first non-zero entry in a row.
+</p>
+
+<h2>Theorem 14b (rank-nullity)</h2>
+
+<p class=boxed>
+The rank of $A$ plus the dimension of the null space of $A$
+equals the number of columns of $A$.
+</p>
+
+<p>
+I call this the <span class=red>rank-nullity</span> theorem.
+The <span class=red>nullity</span> is the dimension of the null space.
+The rank plus the nullity is the number of columns.
+</p>
+
+
+<h2>Geometry</h2>
+
+<p>
+eg. a linear transformation $\mathbb{R}^2 \to \mathbb{R}^2$.
+If the image is a line through the origin,
+then a line through the origin must have been squashed to the origin,
+because $1 + 1 = 2$.
+</p>
+
+
+<h2>Clicker question</h2>
+
+<p>
+A $4 \times 6$ matrix has a $2$-dimensional null space.
+What is its rank?
+</p>
+
+<ul>
+<li> <span class="red">A:</span> $2$. </li>
+<li> <span class="red">B:</span> $4$. </li>
+<li> <span class="red">C:</span> $6$. </li>
+<li> <span class="red">D:</span> No way to know. </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+Could a $4 \times 7$ matrix have a $2$-dimensional null space?
+</p>
+
+<ul>
+<li> <span class="red">A:</span> Yes. </li>
+<li> <span class="red">B:</span> No. </li>
+</ul>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 11</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;3.1: Intro to determinants</h1>
+
+<p>
+<b>TL;DR</b>
+The determinant of a square matrix is a number you can compute.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+I decided to skip &sect;2.3.
+Sorry for the short notice.
+Good job if you already read it.
+</p>
+
+<p>
+New plan: at one section per lecture,
+the second exam will cover
+&sect;2.1, &sect;2.2, &sect;3.1, &sect;3.2, &sect;4.1&ndash;6.
+</p>
+
+<h2>Review</h2>
+
+<p>
+Suppose $A$ is an $m \times n$ matrix.
+</p>
+
+<p style="color: red">
+Echelon form of $A$ has a pivot in every row <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    $A \mathbf{x} = \mathbf{b}$ always has at least one solution <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    the columns of $A$ span $\mathbb{R}^m$.
+</p>
+
+<p style="color: orange">
+Echelon form of $A$ has a row of zeros <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    $A \mathbf{x} = \mathbf{b}$ sometimes has no solution <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    the columns of $A$ do not span $\mathbb{R}^m$.
+</p>
+
+<p style="color: gold">
+Echelon form of $A$ has a pivot in every column <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    $A \mathbf{x} = \mathbf{0}$ has only the trivial solution <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    the columns of $A$ are linearly independent.
+</p>
+
+<p style="color: green">
+Echelon form of $A$ has a column with no pivot <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    $A \mathbf{x} = \mathbf{0}$ has a non-trivial solution <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    the columns of $A$ are linearly dependent.
+</p>
+
+<p style="color: blue">
+Reduced echelon form of $A$ is $I$ <br/>
+&nbsp;&nbsp;&hArr;&nbsp;
+    $A$ is invertible.
+</p>
+
+
+<h2>History</h2>
+
+<p>
+I found this
+<a href="http://www.math.harvard.edu/~knill/history/matrix/">
+summary of the history of matrices</a>.
+Determinants were important early on,
+even before matrix multiplication.
+They were maybe sort of invented by Kowa Seki in the 1600s.
+The word "matrix"
+was first used by James Sylvester in 1850.
+It is related to the word "mother",
+because the matrix is a mother and the determinant is her child.
+</p>
+
+<p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Seki.jpeg"
+title="Kowa Seki"
+alt="Drawing of Kowa Seki"
+height=400>
+<img
+src="https://upload.wikimedia.org/wikipedia/commons/2/29/James_Joseph_Sylvester.jpg"
+title="James Joseph Sylvester"
+alt="19th century photo of James Sylvester"
+height=400>
+</p>
+
+<h2>In this chapter, all matrices are square</h2>
+
+<p class=boxed>
+Determinants are only for square matrices.
+</p>
+
+<p>
+Also, I forgot to say last time,
+"invertible" is only for square matrices.
+</p>
+
+<h2>Two-by-two</h2>
+
+<p>
+$$\operatorname{det}
+\left[ \begin{array}{cc}
+a & b \\ c & d
+\end{array} \right] = ad-bc.$$
+</p>
+
+<p>
+Row reduce:
+$$
+\left[ \begin{array}{cc} a & b \\ c & d \end{array} \right]
+  \leadsto \left[ \begin{array}{cc} a & b \\ ac & ad \end{array} \right]
+  \leadsto \left[ \begin{array}{cc} a & b \\ 0 & ad-bc \end{array} \right]
+$$
+</p>
+
+<p>
+I cheated by assuming $a \neq 0$.
+Nevertheless,
+the determinant is always $ad-bc$.
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+The determinant of
+$ \left[ \begin{array}{cc} 6 & 3 \\ 2 & x \end{array} \right]$
+is zero when $x$ is
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> $-1$ </li>
+<li class=inline> <span class=red>D</span> other </li>
+</ul>
+
+<h2>Three-by-three</h2>
+
+<p>
+$$
+\operatorname{det}
+\left[ \begin{array}{ccc} a & b & c \\ d & e & f \\ g & h & i
+\end{array} \right] =
+a \operatorname{det}
+\left[ \begin{array}{cc} e & f \\ h & i \end{array} \right]
+- b \operatorname{det}
+\left[ \begin{array}{cc} d & f \\ g & i \end{array} \right]
++ c \operatorname{det}
+\left[ \begin{array}{cc} d & e \\ g & h \end{array} \right]
+$$
+</p>
+
+<p>
+There's another way that involves a bunch of diagonals.
+You can use it if you know it,
+but only for three-by-three matrices.
+</p>
+
+<h2>Four-by-four</h2>
+
+<p>
+$$
+\operatorname{det}
+\left[ \begin{array}{cccc}
+  a & b & c & d \\ e & f & h & h \\ i & j & k & l \\ m & n & o & p
+\end{array} \right] =
+a \operatorname{det}
+\left[ \begin{array}{ccc}
+  f & g & h \\ j & k & l \\ n & o & p \end{array} \right]
+- b \operatorname{det}
+\left[ \begin{array}{ccc}
+  e & g & h \\ i & k & l \\ m & o & p \end{array} \right] \\
++ c \operatorname{det}
+\left[ \begin{array}{ccc}
+  e & f & h \\ i & j & l \\ m & n & p \end{array} \right]
+- d \operatorname{det}
+\left[ \begin{array}{ccc}
+  e & f & g \\ i & j & k \\ m & n & o \end{array} \right]
+$$
+</p>
+
+<p> Explanation: </p>
+
+<ul>
+<li> The signs alternate: $+$, $-$, $+$, $-$. </li>
+<li> The matrix entries go across the first row: $a$, $b$, $c$, $d$. </li>
+<li> Each of these entries gets multiplied by the determinant after
+     you delete the row and column it was in. </li>
+</ul>
+
+<p> It's called
+<span class=red>cofactor expansion across the first row</span>.
+</p>
+
+<p> Now you try. </p>
+
+<h2>Clicker question</h2>
+
+<p>
+What is the determinant of
+$\left[ \begin{array}{cccc}
+1   & 0 & 0   & 0 \\
+0   & 0 & 1   & 0 \\
+\pi & 2 & \pi & 1 \\
+\pi & 3 & \pi & 2
+\end{array} \right]$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> $-1$ </li>
+<li class=inline> <span class=red>D</span> other </li>
+</ul>
+
+<p>
+There's no good way to "check your answer",
+except 
+<a href="https://www.wolframalpha.com/input/?i=determinant+of+%7B%7B1%2C0%2C0%2C0%7D%2C%7B0%2C0%2C1%2C0%7D%2C%7Bpi%2C2%2Cpi%2C1%7D%2C%7Bpi%2C3%2Cpi%2C2%7D%7D">
+by computer</a>.
+
+<h2>Theorem 1</h2>
+
+<p> 
+You can use cofactor expansion across any row or column.
+and you will get the same answer.
+</p>
+
+<p>
+The signs are
+$$\left[ \begin{array}{cccc}
++ & - & + & - \\ - & + & - & + \\ + & - & + & - \\ - & + & - & +
+\end{array} \right]$$
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+What is the determinant of
+$\left[ \begin{array}{cccc}
+\pi & 1 & \pi & \pi \\
+1   & 0 & 0   & 0 \\
+\pi & 0 & 1   & 0 \\
+\pi & 0 & 0   & 1
+\end{array} \right]$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> $-1$ </li>
+<li class=inline> <span class=red>D</span> other </li>
+</ul>
+
+
+<h2>Clicker question</h2>
+
+<p>
+What is the determinant of
+$\left[ \begin{array}{cccc}
+1 & \pi & \pi & \pi \\
+0 & 1   & \pi & \pi \\
+0 & 0   & 1   & \pi \\
+0 & 0   & 0   & 1
+\end{array} \right]$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> $-1$ </li>
+<li class=inline> <span class=red>D</span> other </li>
+</ul>
+
+<h2>Theorem 2</h2>
+
+<p>
+If $A$ is a triangular matrix
+then its determinant is the product of
+the entries on the main diagonal.
+</p>
+
+<h2>Conclusion</h2>
+
+<h3>What you need to know</h3>
+
+<p>
+Given a square matrix,
+you can follow a long complicated procedure,
+and get a number called the determinant.
+</p>
+
+<p>
+You should practice computing them until you're confident.
+You can make up your own and use a computer to check your answer.
+Watch videos, eg. Khan academy, or Thinkwell.
+</p>
+
+<h3>What are determinants for?</h3>
+
+<p>
+Mainly:
+</p>
+
+<p class=boxed>
+A matrix is invertible &hArr; it has non-zero determinant.
+</p>
+
+<p>
+But you <span class=red>already knew</span>
+how to see if a matrix is invertible by row reduction.
+I would say row reduction is better for a specific matrix,
+and determinants are better for a matrix with variables in it.
+</p>
+
+<p>
+Later we'll use determinants to calculate eigenvalues.
+</p>
+
+<p>
+You might see them again in calculus
+(eg. the Wronskian,
+and the change of variables for a multivariable integral).
+</p>
+
+<h3>What do they mean?</h3>
+
+<p>
+Determinants are a bit mysterious.
+For two-by-two and three-by-three
+you can get some intuition related to area and volume.
+</p>
+
+
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 1</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+
+<body>
+
+<h1>Math 4A</h1>
+
+<h2>2019 Sep 27</h2>
+
+<p><b>Today:</b> &sect;1.1</p>
+
+<p>
+<b>TL;DR</b>
+Systems of linear equations
+can be represented by matrices
+and solved by row operations.
+</p>
+
+<h2>Administration</h2>
+
+<p>
+Please email me if you need me to add you manually to Gauchospace.
+</p>
+
+<p>
+The textbook is by David Lay.
+An old edition should be fine.
+</p>
+
+<p>
+You have to attend lecture and section.
+There might be a quiz about this lecture in your first section!
+</p>
+
+<p>
+There are two in class exams on Oct 14 and Nov 8,
+and a final exam on Dec 11.
+</p>
+
+<p>
+My lectures are in HTML,
+and I use "Epic Pen" to scribble on the screen.
+Let's see if they work...
+</p>
+
+<p>
+I will use clickers,
+mostly to take attendance and get feedback.
+Let's see if they work.
+</p>
+
+<hr/>
+
+<h2>Linear equation</h2>
+
+<p>
+$$a_1 x_1 + a_2 x_2 + \dots + a_n x_n = b$$
+where $x_1, \dots, x_n$ are variables. <br/>
+and $a_1, \dots, a_n, b$ are constants.
+</p>
+
+<p>
+<b>eg.</b> $y = 2x + 3$ is a linear equation in the variables $x$ and $y$.
+</p>
+
+<p>
+<b>eg.</b> $x + yz = 2$ is not a linear equation in $x$, $y$ and $z$..
+</p>
+
+<h2>System of linear equations</h2>
+
+<p>
+$$
+\begin{array}{rcl}
+a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n & = & b_1 \\
+a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n & = & b_2 \\
+& \vdots & \\
+a_{m1} x_1 + a_{m2} x_2 + \dots + a_{mn} x_n & = & b_m
+\end{array}
+$$
+</p>
+
+<p>
+<b>eg.</b>
+$$
+\begin{array}{rcl}
+x & + & 2y & = & 1 \\
+  &   & y & = & 3
+\end{array}
+$$
+</p>
+
+<h2>Solution</h2>
+
+<p>
+<b>eg.</b>
+$x = 1$, $y = 1$ is a solution to
+$$
+\begin{array}{rcl}
+5 x - 4 y & = & 1 \\
+-7 x + 9 y & = & 2
+\end{array}
+$$
+</p>
+
+<p>Fact (page 4):</p>
+
+<p class=boxed>
+A system of linear equations has 0, 1, or &infin; solutions.
+</p>
+
+
+<h2>Augmented matrix</h2>
+
+<p>
+<b>eg.</b> for the system of linear equations
+$$
+\begin{array}{ccccccc}
+2 x &+& 3 y &+& 4 z &=& 5 \\
+  x & &     &-&   z &=& 6 \\
+\end{array}
+$$
+</p>
+
+<p>
+the augmented matrix is
+$$
+\left[ \begin{array}{ccc|c} 2 & 3 & 4 & 5 \\ 1 & 0 & -1 & 6 \end{array} \right]
+$$
+</p>
+
+<h2>Row operations</h2>
+
+<p>
+on an augmented matrix:
+</p>
+
+<ul>
+<li> <b>Replace:</b> add a multiple of one row to another. </li>
+<li> <b>Swap:</b> swap two rows. </li>
+<li> <b>Scale:</b> multiply a row by a non-zero number. </li>
+</ul>
+
+<p>Fact (page 7):</p>
+
+<p class=boxed>
+Row operations do not change the set of solutions.
+</p>
+
+<p>
+<b>eg.</b>
+$$ \left[ \begin{array}{cc|c} 2 & 5 & 7 \\ 2 & 4 & 6 \end{array} \right] $$
+Divide R2 by 2:
+$$ \leadsto
+   \left[ \begin{array}{cc|c} 2 & 5 & 7 \\ 1 & 2 & 3 \end{array} \right] $$
+Swap R1 and R2:
+$$ \leadsto
+   \left[ \begin{array}{cc|c} 1 & 2 & 3 \\ 2 & 5 & 7 \end{array} \right] $$
+Subtract 2&times;R1 from R2
+$$ \leadsto
+   \left[ \begin{array}{cc|c} 1 & 2 & 3 \\ 0 & 1 & 1 \end{array} \right] $$
+Subtract 2&times;R2 from R1:
+$$ \leadsto
+   \left[ \begin{array}{cc|c} 1 & 0 & 1 \\ 0 & 1 & 1 \end{array} \right] $$
+</p>
+
+
+
+<h2>How to solve a system of linear equations</h2>
+
+<ul>
+<li> Write the augmented matrix. </li>
+<li> Use row operations to make it <span class=green>much simpler</span>. </li>
+<li> Solve the simpler system. </li>
+<li> Check your work. </li>
+</ul>
+
+<p>
+If you found a solution you can check it quite quickly
+by plugging it into the original equations.
+</p>
+
+<p>
+<b>eg.</b> Watch me solve:
+$$
+\begin{array}{rcl}
+x + y & = & 3 \\
+-x + y & = & 1
+\end{array}
+$$
+(Or you could
+<a href="https://www.google.com/?gws_rd=ssl#safe=active&q=graph+y%3D3-x+and+y%3D1%2Bx">graph it with google</a>,
+<a href="http://www.wolframalpha.com/input/?i=x%2By%3D3+and+-x%2By%3D1">ask Wolframalpha</a>,
+or row reduce by
+<a href="http://www.wolframalpha.com/input/?i=row+reduce+%7B%7B1%2C1%2C3%7D%2C%7B-1%2C1%2C1%7D%7D">by
+computer</a>.)
+</p>
+
+<p>
+<b>eg.</b>
+$$
+\begin{array}{rcl}
+2x - 6y & = & 2 \\
+-3x + 9y & = & -3
+\end{array}
+$$
+has infinitely many solutions.
+</p>
+
+<p>
+<b>eg.</b>
+$$
+\begin{array}{rcl}
+2x - 6y & = & 2 \\
+-3x + 9y & = & 3
+\end{array}
+$$
+has no solutions.
+</p>
+
+<p>
+(Finish class ten minutes early.)
+
+<hr/>
+
+<h2>Homework</h2>
+
+<p>
+Read Section 1.2 over the weekend.
+</p>
+
+<p>
+Start the WebWork homework (maybe even finish it).
+</p>
+
+</body>
+</html>

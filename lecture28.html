@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 28</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;6.5 Least-squares problems</h1>
+
+<p><b>TL;DR</b>&nbsp;
+An exact solution to $A^T A \mathbf{x} = A^T \mathbf{b}$
+is a "least-squares solution" to $A \mathbf{x} = \mathbf{b}$.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+Homework is due on Friday before 10pm.
+</p>
+
+<p>
+ESCI surveys are due Friday (midnight, I guess?).
+</p>
+
+<p>
+Do not request any midterm regrades after Friday.
+</p>
+
+
+<h2>Story so far</h2>
+
+<p>
+If $\mathbf{u}, \mathbf{v} \in \mathbb{R}^n$
+then $\mathbf{u} \cdot \mathbf{v} \in \mathbb{R}$.
+Use it to define
+length,
+distance,
+and orthogonality.
+</p>
+
+<h2>Theorem 3</h2>
+
+<p class=boxed>
+The row space and null space of a matrix are orthogonal complements.
+</p>
+
+<p>
+So, every vector in the row space
+is orthogonal to every vector in the null space.
+</p>
+
+<p class=green>
+(Well actually,
+the row space is a set of $1 \times n$ vectors,
+and the null space is a set of $n \times 1$ vectors.
+We will ignore the difference.)
+</p>
+
+<h2>Theorem 13</h2>
+
+<p class=boxed>
+$\mathbf{x'}$ is a least-squares solution to $A \mathbf{x} = \mathbf{b}$
+if and only if
+it is a solution to
+$A^T A \mathbf{x} = A^T \mathbf{b}$.
+</p>
+
+<h2>Example</h2>
+
+<p class=red>
+Find the least squares solution to
+$\begin{bmatrix} 1&0 \\ 0&1 \\ 1&1 \end{bmatrix}
+\begin{bmatrix} x \\ y \end{bmatrix}
+= \begin{bmatrix} 2 \\ 2 \\ 5 \end{bmatrix}$.
+</p>
+
+<p>
+Solve:
+$\begin{bmatrix} 1&0&1 \\ 0&1&1 \end{bmatrix}
+\begin{bmatrix} 1&0 \\ 0&1 \\ 1&1 \end{bmatrix}
+\begin{bmatrix} x \\ y \end{bmatrix}
+= \begin{bmatrix} 1&0&1 \\ 0&1&1 \end{bmatrix}
+\begin{bmatrix} 2 \\ 2 \\ 5 \end{bmatrix}$
+</p>
+
+<p>
+Multiply to get:
+$\begin{bmatrix} 2&1 \\ 1&2 \end{bmatrix}
+\begin{bmatrix} x \\ y \end{bmatrix}
+= \begin{bmatrix} 7 \\ 7 \end{bmatrix}$.
+</p>
+
+<p>
+Solve:
+$\left[ \begin{array}{cc|c} 2&1&7 \\ 1&2&7 \end{array} \right]
+\leadsto \cdots \leadsto
+\left[ \begin{array}{cc|c} 1&0&7/3 \\ 0&1&7/3 \end{array} \right]$.
+</p>
+
+<p>
+So the least squares solution is
+$\begin{bmatrix} x \\ y \end{bmatrix}
+= \begin{bmatrix} 7/3 \\ 7/3 \end{bmatrix}$.
+</p>
+
+<h2>Example: orthogonal projection</h2>
+
+<p class=red>
+Find the vector in the span of
+$\begin{bmatrix} 3\\1 \end{bmatrix}$
+that is closest to
+$\begin{bmatrix} 10\\0 \end{bmatrix}$.
+</p>
+
+<p>
+Find a least squares solution to:
+$\begin{bmatrix} 3\\1 \end{bmatrix}
+\begin{bmatrix} x \end{bmatrix}
+= \begin{bmatrix} 10\\0 \end{bmatrix}$.
+</p>
+
+<p>
+Solve:
+$\begin{bmatrix} 3&1 \end{bmatrix}
+\begin{bmatrix} 3\\1 \end{bmatrix}
+\begin{bmatrix} x \end{bmatrix}
+= \begin{bmatrix} 3&1 \end{bmatrix}
+\begin{bmatrix} 10\\0 \end{bmatrix}$.
+</p>
+
+<p>
+Get $x = 3$.
+So the closest vector is $\begin{bmatrix} 9\\3 \end{bmatrix}$.
+</p>
+
+<h2>Example: Line of best fit</h2>
+
+<p class=red>
+Find the line of best fit through $(0,0)$, $(1,4)$ and $(2,2)$.
+</p>
+
+<p>
+$y = mx + b$ cannot go through the three points, but if it did then:
+$$
+\begin{align}
+0 &= m(0) + b \\
+4 &= m(1) + b \\
+2 &= m(2) + b
+\end{align}
+$$
+</p>
+
+<p>
+That is:
+$\begin{bmatrix} 0 & 1 \\ 1 & 1 \\ 2 & 1 \end{bmatrix}
+\begin{bmatrix} m \\ b \end{bmatrix}
+= \begin{bmatrix} 0 \\ 4 \\ 2 \end{bmatrix}$
+</p>
+
+<p>
+Solve:
+$\begin{bmatrix} 0 & 1 & 2 \\ 1 & 1 & 1 \end{bmatrix}
+\begin{bmatrix} 0 & 1 \\ 1 & 1 \\ 2 & 1 \end{bmatrix}
+\begin{bmatrix} m \\ b \end{bmatrix}
+= \begin{bmatrix} 0 & 1 & 2 \\ 1 & 1 & 1 \end{bmatrix}
+\begin{bmatrix} 0 \\ 4 \\ 2 \end{bmatrix}$
+</p>
+
+<p>
+That is:
+$\begin{bmatrix} 5 & 3 \\ 3 & 3 \end{bmatrix}
+\begin{bmatrix} m \\ b \end{bmatrix}
+= \begin{bmatrix} 8 \\ 6 \end{bmatrix}$
+</p>
+
+<p>
+$\left[ \begin{array}{cc|c} 5&3&8\\3&3&6 \end{array} \right]
+\leadsto \cdots \leadsto
+\left[ \begin{array}{cc|c} 1&0&1\\0&1&1 \end{array} \right]$.
+</p>
+
+<p>
+So the line of best fit is $y = x + 1$.
+</p>
+
+<h2>Why does it work? (Not on the exam)</h2>
+
+<p>
+It's easiest to understand in the "orthogonal projection" example.
+</p>
+
+<p>
+We have:
+$$\begin{bmatrix} 3\\1 \end{bmatrix}
+\begin{bmatrix} x \end{bmatrix}
+= \begin{bmatrix} 10\\0 \end{bmatrix} + \text{error}.$$
+For "error" to be as small as possible,
+it should be orthogonal to $\begin{bmatrix} 3\\1 \end{bmatrix}$.
+So it disappears from:
+$$
+\begin{bmatrix} 3&1 \end{bmatrix}
+\begin{bmatrix} 3\\1 \end{bmatrix}
+\begin{bmatrix} x \end{bmatrix}
+= \begin{bmatrix} 3&1 \end{bmatrix}
+\left(
+\begin{bmatrix} 10\\0 \end{bmatrix} + \text{error}
+\right).$$
+</p>
+
+<p>
+For larger examples,
+$$A \mathbf{x} = \mathbf{b} + \text{error}$$
+For "error" to be as small as possible,
+it should be orthogonal to the column space of $A$.
+</p>
+
+<h2>How many solutions?</h2>
+
+<p>
+If $A \mathbf{x} = \mathbf{b}$ has one solution or infinity solutions
+then "least squares solution" is the same as "solution".
+</p>
+
+<p>
+If $A \mathbf{x} = \mathbf{b}$ has zero solutions
+then it has either one or infinity least squares solutions.
+</p>
+
+<h2>Theorem 14</h2>
+
+<p>
+The following are equivalent:
+</p>
+
+<ul>
+<li> $A \mathbf{x} = \mathbf{b}$ has exactly one least-squares solution
+     for every $\mathbf{b}$. </li>
+<li> The columns of $A$ are linearly independent. </li>
+<li> $A^T A$ is invertible. </li>
+</ul>
+
+<h2>Alternative Calculations (not on the exam)</h2>
+
+<p>
+Skip this part of &sect;6.5.
+</p>
+
+<h2>Regrets</h2>
+
+<p>
+I didn't show you how to do the Gram-Schmidt process.
+Ask Wolframalpha to
+"<a href="https://www.wolframalpha.com/input/?i=orthogonalize+%5B%7B%7B1%2C0%2C1%7D%2C%7B1%2C1%2C1%7D%7D%5D">orthogonalize</a>".
+</p>
+
+<p>
+I wish we could talk more about geometry.
+</p>
+
+<p>
+We didn't cover &sect;5.4, and the "$\mathcal{B}$-matrix".
+</p>
+
+<p>
+We didn't achieve full linear algebra enlightenment.
+</p>
+
+<p>
+To the unenlightened, a vector is a column of numbers,
+and a matrix is a rectangular array of numbers.
+</p>
+
+<p>
+To the enlightened,
+a vector could be
+a point, an arrow, a force, a solution to a differential equation, and so on.
+Use a basis to represent a vector by a column of numbers.
+A "change of basis transformation" translates
+between different ways to represent the same vector.
+</p>
+
+<p>
+A matrix uses bases to represent a linear transformation.
+"Similar" matrices are different ways to represent the same transformation $V \to V$.
+"Diagonalizable" means "similar to a diagonal matrix".
+</p>
+
+<p>
+Think of a way to fill in the rest of this meme:
+</p>
+
+<img src="https://i.imgflip.com/3ifbje.jpg"
+alt="expanding brain meme: - vectors and matrices are made of numbers - the numbers are like a finger pointing at the moon">
+
+<h2>Homework help</h2>
+
+<p>
+<span class=red>(1)</span>
+True or false:
+If $A \mathbf{x} = 2 \mathbf{x}$ for some $\mathbf{x}$
+then $2$ is an eigenvalue of $A$.
+</p>
+
+<p>
+<span class=red>(2)</span>
+To see if a given vector is an eigenvector of a given matrix,
+multiply and compare.
+</p>
+
+<p>
+<span class=red>(3)</span>
+To find a basis for an eigenspace,
+subtract the eigenvalue from the diagonal entries
+and find a basis for the nullspace.
+</p>
+
+<p>
+<span class=red>(4)</span>
+It says the characteristic polynomial is $p(x) = ...$,
+so use $x$ instead of $\lambda$.
+</p>
+
+<p>
+<span class=red>(5)</span>
+To find the eigenvalues,
+factor $\det(A - \lambda I)$.
+</p>
+
+<p>
+<span class=red>(6)</span>
+A two-by-two matrix with real entries but no real eigenvalues.
+It must have two (complex conjugate) complex eigenvalues.
+</p>
+
+<p>
+<span class=red>(7)</span>
+eg. any eigenvector of $A$
+is also an eigenvalue of $A^2$, $A - I$, and $2A$.
+</p>
+
+<p>
+<span class=red>(8)</span>
+To compute $M^n$,
+diagonalize, and use $(PDP^{-1})^n = PD^n P^{-1}$.
+</p>
+
+<p>
+<span class=red>(9)</span>
+Diagonalize $A$.
+Webwork has $S^{-1}AS=D$,
+and the book has $A=PDP^{-1}$.
+</p>
+
+</body>
+</html>

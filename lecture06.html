@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 6</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;1.6. Applications of linear systems</h1>
+
+<p>
+<b>TL;DR</b>
+Here are some examples where you might end up
+solving a system of linear equations.
+</p>
+
+<h2>Announcement</h2>
+
+<p>
+No clicker questions today.
+</p>
+
+<h2>Clarification of Theorem 6</h2>
+
+<p>
+Suppose you have a non-homogeneous system of linear equations
+that has infinitely many solutions,
+and the "corresponding homogeneous system"
+is the same but with all zeros on the right of the equals signs.
+</p>
+
+<p>
+Let's say
+<span class="green">N</span>s are solutions to
+the non-homogeneous system, and
+<span class="green">H</span>s are solutions to
+the corresponding homogeneous system.
+</p>
+
+<p class=boxed>
+An <span class="green">N</span>
+plus an <span class="green">H</span>
+is always another <span class="green">N</span>.
+</p>
+
+<p>
+Compare, the superposition principle says
+an <span class="green">H</span>
+plus an <span class="green">H</span>
+is always another <span class="green">H</span>.
+</p>
+
+<h2>Leontief exchange model</h2>
+
+<p>
+Alice, Bob and Charlie live on an island.
+The economy consists of three products: apples, bananas and cherimoyas.
+</p>
+
+<ul>
+<li> Alice sells one apple to Bob and one to Charlie. </li>
+<li> Bob sells two bananas to Charlie. </li>
+<li> Charlie sells one cherimoya to Alice. </li>
+</ul>
+
+<p>
+<span class=red>Question:</span>
+If everybody ends up with the same amount of money they started with,
+which fruit is the most expensive?
+</p>
+
+<p>
+The prices are $a$, $b$ and $c$.
+Alice receives and gives the same amount of money.
+Same for Bob and Charlie.
+</p>
+
+<ul>
+<li> $2a = c$ </li>
+<li> $2b = a$ </li>
+<li> $c = a + 2b$ </li>
+</ul>
+
+<p> Solve. There is one free variable. Check your answer.  </p>
+
+<p>
+<span class=red>Answer:</span> Cherimoyas.
+(Or maybe the trivial solution: all fruits are free.)
+</p>
+
+<p>
+Leontief did something like this in 1949
+using real-world data and a computer.
+</p>
+
+<h2>Balancing chemical equations</h2>
+
+<p>
+When methane burns,
+it combines with oxygen to form carbon dioxide and water.
+</p>
+
+<blockquote>
+&#x2B1C; CH<sub>4</sub> + &#x2B1C; O<sub>2</sub>
+&nbsp; &xrarr; &nbsp;
+&#x2B1C; CO<sub>2</sub> + &#x2B1C; H<sub>2</sub>O
+</blockquote>
+
+<p>
+<span class=red>Question:</span>
+How many O<sub>2</sub> molecules does it take
+to burn each CH<sub>4</sub> molecule?
+</p>
+
+<p>
+Let the blanks be $x$, $y$, $z$ and $w$.
+To balance the carbon, hydrogen, and oxygen atoms:
+</p>
+
+<ul>
+<li> $x = z$ </li>
+<li> $4x = 2w$ </li>
+<li> $2y = 2z + w$ </li>
+</ul>
+
+<p> Solve. There is one free variable. Check your answer. </p>
+
+<p> <span class=red>Answer:</span> Two.  </p>
+
+<h2>Network flow</h2>
+
+<p>
+A traffic circle connects four roads.
+Every minute:
+</p>
+
+<ul>
+<li> One car enters from the west. </li>
+<li> One car enters from the east. </li>
+<li> One car leaves to the north. </li>
+<li> One car leaves to the south. </li>
+</ul>
+
+<p>
+<span class=red>Question:</span>
+Which quarter(s) of the circle get the most traffic?
+</p>
+
+<p>
+Let $a$, $b$, $c$, $d$ be the number of cars per minute
+on the north-west, north-east, south-west and south-east quarter circles.
+</p>
+
+<p>
+The north point on the circle has the same number of cars entering and leaving.
+Same for west, east, and south.
+</p>
+
+<ul>
+<li> $b = a + 1$ </li>
+<li> $a + 1 = c$ </li>
+<li> $d + 1 = b$ </li>
+<li> $c = d + 1$ </li>
+</ul>
+
+<p> Solve. There is one free variable. Check your answer.  </p>
+
+<p>
+<span class=red>Answer:</span>
+The north-east and south-west quarters of the circle
+both get the most traffic.
+</p>
+
+<p>
+<span class=red>Bonus:</span>
+What is the solution to the corresponding homogeneous system?
+(Hint:
+<a href="https://www.youtube.com/watch?v=iAgX6qlJEMc">
+the roundabout in the movie "European vacation"</a>).
+</p>
+
+<p>
+The same model applies whenever stuff is moving through a network
+&mdash; electrons through circuits, products through distribution networks,
+water through pipes, etc.
+</p>
+
+<p>
+The original Google Page Rank Algorithm (TM) uses linear algebra to
+decide which web pages are the most important.
+It's a bit like traffic flow where the "cars" are web
+surfers clicking links at random.
+</p>
+
+<h2>Curve fitting</h2>
+
+<p>
+<span class=red>Question:</span>
+A parabola goes through
+$(1, 3)$, $(2, 7)$ and $(-1, 1)$.
+What is the $y$-intercept?
+</p>
+
+<p>
+$y = ax^2 + bx + c$.
+To go through those three points:
+</p>
+
+<ul>
+<li> $a + b + c = 3$ </li>
+<li> $4a + 2b + c = 7$ </li>
+<li> $a - b + c = 1$ </li>
+</ul>
+
+<p> Solve. There is a unique solution. Check your answer. </p>
+
+<p> <span class=red>Answer:</span> $1$ </p>
+
+<p>
+(The parabola is also called an interpolating polynomial.
+See the exercises at the end of &sect;1.2.)
+</p>
+
+</body>
+</html>

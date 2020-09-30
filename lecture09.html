@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 9</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;2.1: Matrix operations</h1>
+
+<p>
+<b>TL;DR</b>
+You can add, subtract, scalar-multiply, and matrix-multiply matrices.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+The TAs are grading the exams.
+I don't know how long that will take.
+</p>
+
+<p>
+No homework this week.
+</p>
+
+<p>Plan:</p>
+
+<ul>
+<li> Chapter 1 &sect;1&mdash;7 </li>
+<li> Chapter 2 &sect;1&mdash;3 </li>
+<li> Chapter 3 &sect;1&mdash;2 </li>
+<li> Chapter 4 &sect;1&mdash;7 </li>
+<li> Chapter 5 &sect;1&mdash;3 </li>
+<li> Chapter 6 &sect;1&mdash;3 </li>
+</ul>
+
+<h2>Terminology</h2>
+
+<ul>
+<li> The $(i,j)$-entry of $A$ is
+     in the $i$th row and $j$th column. </li>
+<li> The <span class=red>main diagonal</span>
+     goes diagonally from the top left entry.  </li>
+<li> A <span class=red>diagonal matrix</span>:
+     the entries <span class=green>not</span> on the main diagonal
+     are all $0$.  </li>
+<li> The $n \times n$ <span class=red>identity matrix</span> $I_n$:
+     the entries on the main diagonal are all $1$, and
+     the entries not on the main diagonal are all $0$. </li>
+<li> The $m \times n$ <span class=red>zero matrix</span> $0_{m,n}$:
+     all of the entries are $0$. </li>
+</ul>
+
+<h2>+, -, &times;</h2>
+
+<img src=
+"https://orig00.deviantart.net/483d/f/2014/303/3/9/calculator_icon_by_tinylab-d424vrk.png"
+  title="+-x=" alt="+, -, x, = calculator buttons" height=300>
+
+<p>
+Add and subtract matrices in the obvious way.
+They have to be the <span class=red>same shape</span>.
+</p>
+
+<p>
+eg.
+$ \left[ \begin{array}{cc} 1 & 2 \\ 3 & 5 \end{array} \right] +
+\left[ \begin{array}{cc} 1 & 0 \\ 1 & -1 \\ 0 & 0 \end{array} \right]$
+is undefined.
+</p>
+
+<p> Multiply a scalar times a matrix in the obvious way. </p>
+
+<p> Multiply a matrix times a matrix in a not-at-all-obvious way.  </p>
+
+<p class=boxed>
+Suppose $A$ is an $m \times n$ matrix
+and $B$ is an $n \times p$ matrix.
+Then $AB$ is an $m \times p$ matrix.
+The $(i,j)$ entry of $AB$
+is the $i$th row of $A$ times the $j$th column of $B$.
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+$ \left[ \begin{array}{cc} 0 & 0 \\ 0 & 1 \end{array} \right] 
+\left[ \begin{array}{cc} 1 & 2 \\ 3 & 4 \end{array} \right] =$
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span>
+     $\left[ \begin{array}{cc} 0 & 0 \\ 0 & 4 \end{array} \right]$
+</li>
+<li class=inline> <span class=red>B</span>
+     $\left[ \begin{array}{cc} 0 & 0 \\ 3 & 4 \end{array} \right]$
+</li>
+<li class=inline> <span class=red>C</span>
+     $\left[ \begin{array}{cc} 0 & 2 \\ 0 & 4 \end{array} \right]$
+</li>
+</ul>
+
+<h2>Other ways to look at it</h2>
+
+<p>
+The $i$th column of $AB$ is $A$ times (the $i$th column of $B$).
+</p>
+
+<p>
+The $i$th row of $AB$ is (the $i$th row of $A$) times $B$.
+</p>
+
+<p>
+The columns of $AB$ are linear combinations of the columns of $A$.
+</p>
+
+<p>
+The rows of $AB$ are linear combinations of the rows of $B$.
+</p>
+
+<h2>Why?</h2>
+
+<p> Why is matrix multiplication defined the way it is?  </p>
+
+<p>
+One answer: it matches with the rule for matrix-times-vector,
+and it is associative.
+</p>
+
+<p>
+Another answer: it turned out to be useful.
+</p>
+
+<p>
+A lot of computer time is spent multiplying matrices.
+The Coppersmith-Winograd algorithm was
+the fastest from 1990 to 2010.
+Monday's SMBC comic refers to recent improvements.
+</p>
+
+<img src=
+"http://www.smbc-comics.com/comics/1571057817-20191014.png"
+  title="SMBC" alt="SMBC comic about matrix multiplication">
+
+<h2>Warning</h2>
+
+<p>
+Some things are true for multiplying numbers
+but not for multiplying matrices.
+</p>
+
+<ul>
+<li> <span class=crossout>AB = BA</span> </li>
+<li> <span class=crossout>If AB = AC then B = C</span> </li>
+<li> <span class=crossout>If BA = CA then B = C</span> </li>
+<li> <span class=crossout>If AB = 0 then A = 0 or B = 0 </style> </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+$\left[ \begin{array}{cc} 1 & -1 \\ 1 & -1 \end{array} \right]^2$ is
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> undefined </li>
+<li class=inline> <span class=red>B</span> $0_{2,2}$ </li>
+<li class=inline> <span class=red>C</span> other </li>
+</ul>
+
+<h2>The transpose of a matrix</h2>
+
+<p>
+If $A$ is an $m \times n$ matrix
+then $A^T$ is an $n \times m$ matrix.
+The $i$th column of $A^T$ is the $i$th row of $A$.
+</p>
+
+<p>
+The $i$th row of $A^T$ is the $i$th column of $A$.
+</p>
+
+<p>
+The $(i,j)$ entry of $A^T$ is the $(j,i)$ entry of $A$.
+</p>
+
+<p>
+Watch me do an example.
+</p>
+
+
+<h2>Theorem 1,2,3</h2>
+
+<p>
+Basic properties of addition and scalar multiplication</p>
+<ul>
+<li> $A + B = B + A$ </li>
+<li> $(A + B) + C = A + (B + C)$ </li>
+<li> $A + 0 = A$ </li>
+<li> $r(A + B) = rA + rB$ </li>
+<li> $(r + s)A = rA + sA$ </li>
+<li> $r(sA) = (rs)A$ </li>
+</ul>
+
+<p>
+Matrix multiplication
+</p>
+
+<ul>
+<li> $A(BC) = (AB)C$ </li>
+<li> $A(B + C) = AB + AC$ </li>
+<li> $(B + C)A = BA + CA$ </li>
+<li> $r(AB) = (rA)B = A(rB)$ </li>
+<li> $I_mA = A = AI_n$ </li>
+</ul>
+
+<p>Transpose</p>
+
+<ul>
+<li> $(A^T)^T = A$ </li>
+<li> $(A + B)^T = A^T + B^T$ </li>
+<li> $(rA)^T = rA^T$ </li>
+<li> $(AB)^T = B^T A^T$ </li>
+</ul>
+
+<h2>The end?</h2>
+
+<p>
+Or I could do some examples of matrix multiplication,
+or start on the next section.
+</p>
+
+</body>
+</html>

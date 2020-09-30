@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 2</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;1.2. Row reduction and echelon forms</h1>
+
+<p>
+<b>TL;DR</b>
+Any matrix can be row reduced to reduced echelon form.
+Then it's easy to solve. The pivots tell you how many solutions.
+</p>
+
+<hr />
+
+<h2>Announcements</h2>
+
+<p>
+My office hours are 2:30-4:00 Monday and Friday in Kerr Hall 1150.
+</p>
+
+<p>
+The syllabus on Gauchospace briefly had the wrong dates for exams.
+It's fixed now: Oct&nbsp;14, Nov&nbsp;8, Dec&nbsp;11.
+</p>
+
+<p>
+I'm trying to get a "course code" for the textbook
+(I got a weird bug on their website).
+Anyway, it's not for grade.
+</p>
+
+<p>
+On WebWork, "Entered" and "Answer Preview" are the same,
+even if your answer is wrong.
+</p>
+
+<p>
+If an augmented matrix has a column of zeros
+then there is an "invisible" variable,
+which could equal anything.
+This raises philosophical questions that I will not go into here.
+</p>
+
+<hr/>
+
+<h2>(Reduced) echelon form</h2>
+
+<p>Compare, an echelon of bicyclists.</p>
+<div class="crop">
+<img class="flip" src=
+"https://www.bicycling.co.za/wp-content/uploads/2017/01/wind-640x427.jpeg"
+title="echelon form"
+alt="bicycles in echelon form"
+height=400>
+</div>
+
+
+<h3>Leading entry</h3>
+
+<p>
+The first non-zero entry of a row is called the leading entry.
+</p>
+
+<h3>Echelon form</h3>
+
+<ul>
+<li> Any rows that are all zeros are at the bottom. </li>
+<li> Every leading entry is to the right of all leading entries above it. </li>
+</ul>
+
+<p>
+Therefore every leading entry has zeros directly below it,
+and you cannot have more than one leading entry in a column.
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{ccccc|c}
+    &pi; & * & * & * & * & * \\
+    0 & 2 & * & * & * & * \\
+    0 & 0 & 0 & 0 & -7.1 & * \\
+    0  & 0 & 0 & 0 & 0 & 0 \\
+    0  & 0 & 0 & 0 & 0 & 0
+  \end{array} \right]
+$$
+where $*$ is any number.
+</p>
+
+<h3>Reduced echelon form</h3>
+
+<ul>
+<li> Any rows that are all zeros are at the bottom. </li>
+<li> Every leading entry is to the right of all leading entries above it. </li>
+<li> Every number directly above or below a leading entry is zero. </li>
+<li> Every leading entry is $1$. </li>
+</ul>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{ccccc|c}
+    1 & 0 & * & * & 0 & * \\
+    0 & 1 & * & * & 0 & * \\
+    0 & 0 & 0 & 0 & 1 & * \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0
+  \end{array} \right]
+$$
+</p>
+
+<h3>iClicker question</h3>
+
+<p>
+Why is this not in reduced echelon form?
+$$
+  \left[ \begin{array}{cccccc|c}
+    0 & 1 & 2 & 3 & 0 & \sqrt{5} & 0 \\
+    0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 7 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0
+  \end{array} \right]
+$$
+<ul>
+<li> <span class=red>A:</span> One or more $0$ should not be $0$. </li>
+<li> <span class=red>B:</span> The $2$ should be $0$. </li>
+<li> <span class=red>C:</span> The $3$ should be $1$. </li>
+<li> <span class=red>D:</span> None of the above. </li>
+</ul>
+
+<hr/>
+
+<h2>The row reduction algorithm</h2>
+
+<p>
+(Also called Gaussian elimination, or Gauss-Jordan elimination.)
+</p>
+
+<img
+src=
+"https://upload.wikimedia.org/wikipedia/commons/0/0d/10_DM_Serie4_Vorderseite.jpg"
+title="Gauss"
+alt="Gauss on the 10 Deutschemark note"
+height=300
+ />
+
+<img
+src=https://upload.wikimedia.org/wikipedia/commons/7/70/Wilhelm_Jordan.png
+height=300
+title="Jordan"
+alt="Jordan" />
+
+<h3>Pivot</h3>
+
+<p>
+A leading entry of a matrix in echelon form is a <span class=red>pivot</span>.
+</p>
+
+<h3>Main idea</h3>
+
+<p>
+Use a pivot and row replacement to create zeros directly below it.
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{ccc|c}
+    1 & 3 & 2 & 0 \\
+    2 & 4 & 3 & 0 \\
+    3 & 4 & 0 & 0
+  \end{array} \right]
+$$
+The $1$ will be a pivot, and should have zeros directly below it.
+<span class=green>
+Subtract 2&times;R1 from R2, and subtract 3&times;R1 from R3.
+</span>
+</p>
+
+<h3>Zero cannot be a pivot</h3>
+
+<p>
+$$
+  \left[ \begin{array}{cccc|c}
+    0 & 3 & 8 & 8 & 5 \\
+    1 & 0 & 2 & 0 & 6 \\
+    3 & 0 & 0 & 3 & 7
+  \end{array} \right]
+$$
+The $1$ will be a pivot, and you want it on top.
+<span class=green>
+Swap R1 and R2.
+</span>
+</p>
+
+<h3>Ignore the good rows at the top</h3>
+
+<p>
+Once you've got zeros below a pivot, do not change that row.
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{ccccc|c}
+    1 & 7 & 5 & 9 & 0 & 0 \\
+    0 & 2 & 7 & 9 & 9 & 9 \\
+    0 & 0 & 0 & 3 & 0 & 9 \\
+    0 & 0 & 0 & 9 & 9 & 0
+  \end{array} \right]
+$$
+Ignore the top two rows.
+The $3$ will be the next pivot.
+<span class=green>
+Subtract 3&times;R3 from R4.
+</span>
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{ccccc|c}
+    2 & 3 & 5 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 1 & 3 \\
+    0 & 0 & 6 & 0 & 5 & 0
+  \end{array} \right]
+$$
+<span class=green>Swap R2 and R3.</span>
+</p>
+
+<h3>From echelon to reduced echelon</h3>
+
+<p>
+Use a pivot to create zeros directly above it.
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{cccc|c}
+    1 & 0 & 6 & 9 & 0 \\
+    0 & 1 & 3 & 9 & 4 \\
+    0 & 0 & 1 & 2 & 0 \\
+    0 & 0 & 0 & 0 & 0
+  \end{array} \right]
+$$
+<span class=green>
+Subtract 3&times;R3 from R2, and subtract 6&times;R3 from R1.
+</span>
+</p>
+
+<p>
+Scale all the pivots to be $1$.
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{cccc|c}
+    3 & 0 & 0 & 5 & 0 \\
+    0 & 2 & 0 & 9 & 4 \\
+    0 & 0 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 0 & 0
+  \end{array} \right]
+$$
+<span class=green>
+Divide R1 by 3, and divide R2 by 2.
+</span>
+</p>
+
+<h3>Avoid fractions</h3>
+
+<p>
+This is my own preference.
+I think fractions cause arithmetic errors.
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{ccccc|c}
+    5 & 1 & 2 & 3 & 1 & 0 \\
+    8 & 0 & 1 & 0 & 0 & 0 \\
+    8 & 0 & 0 & 0 & 7 & 0
+  \end{array} \right]
+$$
+<span class=green>Multiply R2 and R3 by 5.</span>
+</p>
+
+<h3>Fully worked examples</h3>
+
+<p>
+For examples, see the textbook, other textbooks, your TA, youtube,...
+</p>
+
+<p>
+(Movie night, skipping and speeding up
+the boring parts.)
+</p>
+
+<iframe width=420 height=345
+  src=https://www.youtube.com/embed/0fTSBIBD7Cs >
+</iframe>
+
+<h3>Echelon vs reduced echelon</h3>
+
+<p>
+Should you go all the way to reduced echelon form,
+or just stop at echelon form?
+Either is fine.
+Non-reduced echelon form takes less work row reducing,
+then more work finding the solutions by back substitution.
+</p>
+
+<hr/>
+
+<h2>How many solutions?</h2>
+
+<div class=crop>
+<img src=http://deow9bq0xqvbj.cloudfront.net/image-logo/732754/LogoJPEG.jpg
+height=450
+title="0, 1, &infin;"
+alt="zerooneinfinity.io logo">
+</div>
+
+<p>
+After the augmented matrix is in echelon form,
+it is easy to tell if it has 0, 1, or &infin; solutions.
+</p>
+
+<ul>
+<li>
+<b>Zero</b>
+if echelon form has a pivot on the far right of the augmented matrix
+(right of my vertical line).
+</li>
+<li>
+<b>One</b>
+if echelon form does not have a pivot in the far right column,
+but has a pivot in every other column.
+</li>
+<li>
+<b>Infinity</b>
+if echelon form does not have a pivot in the far right column,
+and also does not have a pivot in some other column.
+</li>
+</ul>
+
+<p>
+No need to go to reduced echelon form here.
+You can already see where the pivots are
+in not-reduced echelon form.
+</p>
+
+<h3>No</h3>
+
+<p>
+A system of equations with no solution
+is called <span class=red>inconsistent</span>.
+Row reduction leads to an equation like:
+$$0x + 0y + 0z = 7.$$
+</p>
+
+<h3>One</h3>
+
+<p>
+If a system of linear equations has a unique solution
+then you can read the solution straight from the reduced echelon form.
+</p>
+
+<p>
+<b>eg.</b>
+$$
+  \left[ \begin{array}{ccc|c}
+    1 & 0 & 0 & 3 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 7 \\
+    0 & 0 & 0 & 0 
+  \end{array} \right]
+$$
+has the solution
+$$
+\begin{align}
+x &= 3\\
+y &= 0\\
+z &= 7
+\end{align}
+$$
+</p>
+
+<h3>Infinity</h3>
+
+<p>
+A <span class=red>free variable</span>,
+is one whose column does not have a pivot.
+A free variable can equal anything.
+</p>
+
+<p>
+eg.
+$$
+  \left[ \begin{array}{ccccc|c}
+    1 & 2 & 0 & 3 & 0 & 4 \\
+    0 & 0 & 1 & 5 & 0 & 6 \\
+    0 & 0 & 0 & 0 & 1 & 7
+  \end{array} \right]
+$$
+has infinitely many solutions:
+$x_2$ and $x_4$ are free, and
+$$x_1 = 4 - 2x_2 - 3x_4,$$
+$$x_3 = 6 - 5x_4,$$
+$$x_5 = 7.$$
+(Here, $x_1$ and $x_3$ could equal anything,
+but we don't call them "free",
+by convention.)
+</p>
+
+<h3>iClicker question</h3>
+
+<p>
+Suppose you were given a system of linear equations.
+You turned it into an augmented matrix,
+and row reduced it
+(all the way to reduced echelon form, just for fun).
+How many solutions if you got:
+</p>
+
+<p>
+$
+  \left[ \begin{array}{ccc|c}
+    1 & 0 & 0 & 5 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 7 
+  \end{array} \right]?
+$
+</p>
+
+<ul>
+<li class=inline> <span class=red>A:</span> Zero
+</li>
+<li class=inline> <span class=red>B:</span> One
+</li>
+<li class=inline> <span class=red>C:</span> Infinity
+</li>
+</ul>
+
+<p>
+(Out of time.)
+</p>
+
+<h3>iClicker question</h3>
+
+<p>
+What if you got
+$
+  \left[ \begin{array}{ccc|c}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 1
+  \end{array} \right]?
+$
+</p>
+
+<ul>
+<li class=inline> <span class=red>A:</span> Zero
+</li>
+<li class=inline> <span class=red>B:</span> One
+</li>
+<li class=inline> <span class=red>C:</span> Infinity
+</li>
+</ul>
+
+<h3>iClicker question</h3>
+
+<p>
+What if you got
+$
+  \left[ \begin{array}{ccc|c}
+    1 & 0 & 0 & 5 \\
+    0 & 1 & 1 & 8 \\
+    0 & 0 & 0 & 0
+  \end{array} \right]?
+$
+</p>
+
+<ul>
+<li class=inline> <span class=red>A:</span> Zero
+</li>
+<li class=inline> <span class=red>B:</span> One
+</li>
+<li class=inline> <span class=red>C:</span> Infinity
+</li>
+</ul>
+
+<hr/>
+
+<h2>Homework</h2>
+
+<p>
+Read section 1.3.
+Keep doing WebWork.
+Maybe practice a complicated row reduction.
+</p>
+
+<p>
+Think about things, eg.
+What does a row of zeros have to do with the number of solutions?
+What do the number of equations and number of variables
+tell you about the number of solutions?
+Could you get a column of zeros, if it wasn't there to begin with?
+</p>
+
+
+</body>
+</html>

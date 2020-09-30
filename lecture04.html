@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 4</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<h1>&sect;1.4. The matrix equation $A \mathbf{x} = \mathbf{b}$</h1>
+
+<p>
+<b>TL;DR</b>
+$A\mathbf{x}=\mathbf{b}$
+is yet another way to write a system of linear equations.
+The pivots of $A$ tell you if it has a solution for all $\mathbf{b}$
+or only some.
+</p>
+
+<hr />
+
+<h2>Announcements</h2>
+
+<p>
+If someone or some website tells you to ask me for an approval code,
+that is incorrect advice. Maybe it applies to other departments.
+I leave all enrollment issues up to the people
+in the front office on the sixth floor of South Hall.
+</p>
+
+<p>
+Webwork is due tonight. Next week's homework will appear soon.
+The textbook publisher's website has nothing to do with homework,
+and is <span class=red>not compulsory</span>.
+</p>
+
+<p>
+Send me an email if you do not have a clicker and do not want to buy one,
+for some legitimate reason.
+</p>
+
+<p>
+My office hours are 2:30&ndash;4:00 Monday and Friday in Kerr Hall 1150.
+You can just hang out and work.
+</p>
+
+<hr/>
+
+<h2>Theorem 1 (review)</h2>
+
+<p>
+Any matrix can be row reduced.
+The reduced echelon form you get is unique,
+no matter what sequence of row operations you used.
+</p>
+
+<h2>Theorem 2 (review)</h2>
+
+<p>
+Every system of linear equations has zero one or infinity solutions.
+To tell which,
+make an augmented matrix,
+row reduce,
+and look at the pivots.
+</p>
+
+<table>
+<tr>
+    <td style="width:400px">
+        Is there a pivot to the right of the line? </td>
+    <td style="white-space: nowrap">
+        <i class="fa fa-arrow-right" style="font-size:48px"></i>
+        YES <i class="fa fa-arrow-right" style="font-size:48px"></i>
+    </td>
+    <td> Zero solutions. </td>
+</tr>
+<tr>
+    <td>
+        <i class="fa fa-arrow-down" style="font-size:48px"></i>
+        <br/> NO <br/> <i class="fa fa-arrow-down" style="font-size:48px"></i>
+    </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td> Is there a pivot in every column to the left of the line? </td>
+    <td style="white-space: nowrap">
+        <i class="fa fa-arrow-right" style="font-size:48px"></i>
+        YES <i class="fa fa-arrow-right" style="font-size:48px"></i>
+    </td>
+    <td> One solution. </td>
+</tr>
+<tr>
+    <td> 
+        <i class="fa fa-arrow-down" style="font-size:48px"></i>
+        <br/> NO <br/> <i class="fa fa-arrow-down" style="font-size:48px"></i>
+    </td>
+    <td> </td>
+    <td> </td>
+</tr>
+<tr>
+    <td> Infinitely many solutions. </td>
+    <td> </td>
+    <td> </td>
+</tr>
+</table>
+
+<h2>An $m \times n$  matrix</h2>
+
+<p>
+An $m \times n$ matrix
+is a rectangular array of numbers with $m$ rows and $n$ columns.
+</p>
+
+<p>
+Remember $m \times n$ is "rows by columns".
+</p>
+
+<img class=displayed
+src="https://www.foodbev.com/wp-content/uploads/2012/06/20/rcreg.jpg"
+title="RC cola" alt="Can of RC cola" height=500>
+
+<h2>Matrix times vector</h2>
+
+<p> eg.
+$$
+\begin{array}{rcl}
+  \left[ \begin{array}{cc}
+    1 & 2 \\
+    3 & 4 
+  \end{array} \right]
+  \left[ \begin{array}{c}
+    5 \\
+    6 
+  \end{array} \right] &=&
+ 5 \left[ \begin{array}{c} 1 \\ 3 \end{array} \right]
++ 6 \left[ \begin{array}{c} 2 \\ 4 \end{array} \right] \\
+ &=& \left[ \begin{array}{c} (1 \times 5) + (2 \times 6) \\ (3 \times 5) + (4 \times 6) \end{array} \right]
+\\
+ &=& \left[ \begin{array}{c} 17 \\ 39 \end{array} \right]
+\end{array}
+$$
+</p>
+
+<p>
+The number of columns in the matrix
+has to be the same as the number of entries in the vector.
+</p>
+
+<p>
+<span class="red">eg.</span>
+$ \left[ \begin{array}{ccc}
+    1 & 2 & 3 \\
+    4 & 5 & 6
+  \end{array} \right]
+  \left[ \begin{array}{c}
+    5 \\
+    6 
+  \end{array} \right]$
+is undefined.
+</p>
+
+<p>
+If $A$ is a $1 \times n$ matrix and $\mathbf{x} \in \mathbb{R}^n$
+then $A \mathbf{x}$ is a one-by-one matrix.
+</p>
+
+<p>
+<span class=red>eg.</span>
+$$
+\left[ \begin{array}{ccc} 1 & 2 & 3 \end{array} \right]
+\left[ \begin{array}{c} 4 \\ 5 \\ 6 \end{array} \right]
+=
+\left[ (1 \times 4) + (2 \times 5) + (3 \times 6) \right].
+$$
+</p>
+
+<p>
+If $A$ is an $m \times n$ matrix
+then the $i$th entry of $A \mathbf{x}$
+is the $i$th row of $A$ times $x$.
+</p>
+
+<h2>Matrix times vector dance</h2>
+
+<p>
+Move your left hand from left to right
+and your right hand from top to bottom.
+</p>
+
+<img src="https://j.gifs.com/WLp2Mx.gif" height=300 >
+
+<p>
+(Note, if you do the dance correctly, it looks backwards to someone else.)
+</p>
+
+<h2>i&gt;Clicker question</h2>
+
+$
+  \left[ \begin{array}{cc}
+    1 & 2 \\
+    3 & 4
+  \end{array} \right]
+  \left[ \begin{array}{c}
+    -1 \\
+    1 
+  \end{array} \right]
+ =$
+
+<ul>
+<li class=inline> 
+<span class="red">A:</span>
+$ \left[ \begin{array}{cc} 2 & 2 \end{array} \right] $
+</li>
+<li class=inline> 
+<span class="red">B:</span>
+$ \left[ \begin{array}{cc} -1 & -2 \\ 3 & 4 \end{array} \right] $
+</li>
+<li class=inline>
+<span class="red">C:</span>
+$ \left[ \begin{array}{c} -3 \\ 7 \end{array} \right] $
+</li>
+<li class=inline>
+<span class="red">D:</span>
+$ \left[ \begin{array}{c} 1 \\ 1 \end{array} \right] $
+</li>
+</ul>
+
+<h2>i&gt;Clicker question</h2>
+
+<p>
+$
+  \left[ \begin{array}{cc}
+    1 & 2 \\
+    3 & 4 \\
+    5 & 6
+  \end{array} \right]
+  \left[ \begin{array}{c}
+    2 \\
+    -1
+  \end{array} \right]
+ =$
+</p>
+
+<ul>
+<li class=inline> <span class="red">A:</span> 
+     $\left[ \begin{array}{c} 0 \\ 2 \\ 4 \end{array} \right]$
+</li>
+<li class=inline> <span class="red">B:</span> Undefined. </li>
+<li class=inline> <span class="red">C:</span> Other. </li>
+</ul>
+
+<h2>Theorem 3</h2>
+
+<p>
+Let $A$ be an $m \times n$ matrix,
+let $\mathbf{a}_1, \dots, \mathbf{a}_n$ be its columns,
+and let $\mathbf{b}$ be a vector in $\mathbb{R}^m$.
+The following are equivalent:
+</p>
+
+<ul>
+<li> Solve $A \mathbf{x} = \mathbf{b}$. </li>
+<li> Solve $x_1 \mathbf{a}_1 + \dots + x_n \mathbf{a}_n = \mathbf{b}$. </li>
+<li> Solve $[\ A\ |\ \mathbf{b}\  ]$. </li>
+</ul>
+
+<h2>Theorem 4</h2>
+
+<p>
+Let $A$ be an $m \times n$ matrix.
+The following are equivalent.
+</p>
+
+<ul>
+<li> For every $\mathbf{b} \in \mathbb{R}^m$,
+     there is a solution to $A \mathbf{x} = \mathbf{b}$. </li>
+<li> Every $\mathbf{b} \in \mathbb{R}^m$
+     is a linear combination of the columns of $A$. </li>
+<li> The columns of $A$ span $\mathbb{R}^m$. </li>
+<li> Echelon form of $A$ has a pivot in every row. </li>
+</ul>
+
+<h2>Theorem 5</h2>
+
+<p>
+Let $A$ be an $m \times n$ matrix,
+and let $\mathbf{u}$ and $\mathbf{v}$ be vectors in $\mathbb{R}^n$,
+and let $c$ be a scalar.
+</p>
+
+<ul>
+<li> $A (\mathbf{u} + \mathbf{v}) = A \mathbf{u} + A \mathbf{v}$ </li>
+<li> $A (c \mathbf{v}) = c ( A \mathbf{v} )$. </li>
+</ul>
+
+<p>
+Multiplication is not commutative.
+Do not write $\mathbf{v}c$ or $\mathbf{v}A$.
+</p>
+
+<h2>i&gt;Clicker question</h2>
+
+<p>
+Does
+$\left[ \begin{array}{ccc|c}
+1 & 0 & 1 & 1 \\
+0 & 1 & 1 & 1 \\
+2 & 0 & 2 & 2
+\end{array}
+\right]$
+have a solution?
+</p>
+
+<ul>
+<li> <span class="red">A:</span> Yes. (At least one solution.) </li>
+<li> <span class="red">B:</span> No. (No solution.) </li>
+</ul>
+
+<h2>i&gt;Clicker question</h2>
+
+<p>
+Does
+$\left[ \begin{array}{ccc|c}
+1 & 0 & 1 & 1 \\
+0 & 1 & 1 & 1 \\
+2 & 0 & 2 & 1
+\end{array}
+\right]$
+have a solution?
+</p>
+
+<ul>
+<li> <span class="red">A:</span> Yes. </li>
+<li> <span class="red">B:</span> No. </li>
+</ul>
+
+<h2>i&gt;Clicker question</h2>
+
+<p>
+Does
+$\left[ \begin{array}{ccc|c}
+1 & 0 & 1 & a \\
+0 & 1 & 1 & b \\
+2 & 0 & 2 & c
+\end{array}
+\right]$
+have a solution?
+</p>
+
+<ul>
+<li> <span class="red">A:</span> Always. </li>
+<li> <span class="red">B:</span> Never. </li>
+<li> <span class="red">C:</span> Sometimes. </li>
+</ul>
+
+
+<h2>i&gt;Clicker question</h2>
+
+<p>
+Does
+$\left[ \begin{array}{ccc|c}
+1 & 0 & 1 & a \\
+0 & 1 & 1 & b \\
+2 & 0 & 3 & c
+\end{array}
+\right]$
+have a solution?
+</p>
+
+<ul>
+<li> <span class="red">A:</span> Always. </li>
+<li> <span class="red">B:</span> Never. </li>
+<li> <span class="red">C:</span> Sometimes. </li>
+</ul>
+
+<h2>Explanation of Theorem 4</h2>
+
+<p>
+A row of zeros in an augmented matrix
+just means one of the linear equations was redundant.
+</p>
+
+<p>
+A row of almost all zeros in an augmented matrix,
+except a non-zero number to the right of the line,
+means the system of linear equations was inconsistent.
+</p>
+
+<p class="boxed">
+A row of zeros in the
+<span class=red>coefficient</span> matrix 
+means the <span class=red>augmented</span> matrix is in danger of
+a pivot to the right of the line.
+</p>
+
+<h2>Homework</h2>
+
+<p>
+As usual, do webwork and read the next section.
+</p>
+
+</body>
+</html>

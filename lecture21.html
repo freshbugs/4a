@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 21</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;4.7 Change of basis</h1>
+
+
+<p><b>TL;DR</b>&nbsp;
+A change of basis matrix converts coordinate vectors from one basis to another.
+</p>
+
+<h2>Announcements</h2>
+
+<p>
+The TAs are still grading. 
+</p>
+
+<p>
+I will put up some homework tonight, due in one week.
+</p>
+
+<h2>Change of basis</h2>
+
+<p>
+Let $\mathcal{C}$ and $\mathcal{B}$ be bases for a vector space $V$.
+Then
+$\begin{array}{c} P \\[-1em] \mathcal{C} \leftarrow \mathcal{B} \end{array}$
+is the matrix such that:
+</p>
+
+<p class="boxed">
+$[\mathbf{x}]_\mathcal{C} =
+ \begin{array}{c} P \\[-1em] \mathcal{C} \leftarrow \mathcal{B} \end{array}
+ [\mathbf{x}]_\mathcal{B}$
+</p>
+
+<h2>Theorem 15</h2>
+
+<p>
+The columns of
+$\begin{array}{c} P \\[-1em] \mathcal{C} \leftarrow \mathcal{B} \end{array}$
+are $[\mathbf{b}_1]_\mathcal{C}, [\mathbf{b}_2]_\mathcal{C}, \dots$.
+</p>
+
+<h2>Theorem 15&frac12;</h2>
+
+<p>
+$\left(
+\begin{array}{c} P \\[-1em] \mathcal{C} \leftarrow \mathcal{B} \end{array}
+\right)^{-1} =
+\begin{array}{c} P \\[-1em] \mathcal{B} \leftarrow \mathcal{C} \end{array}$
+</p>
+
+<h2>Change of basis in $\mathbb{R}^n$</h2>
+
+<p>
+Suppose $V = \mathbb{R}^3$
+and $\mathcal{E}$ is the standard basis
+$$
+\mathcal{E}
+= \{ \mathbf{e}_1, \mathbf{e}_2, \mathbf{e}_3 \}
+= \left\{
+ \begin{bmatrix}1\\0\\0\end{bmatrix},
+ \begin{bmatrix}0\\1\\0\end{bmatrix},
+ \begin{bmatrix}0\\0\\1\end{bmatrix} \right\}.$$
+Then:
+</p>
+
+<ul>
+
+<li> $[\mathbf{v}]_\mathcal{E} = \mathbf{v}$ </li>
+<li>
+$\begin{array}{c} P \\[-1em] \mathcal{E} \leftarrow \mathcal{B} \end{array}
+= P_\mathcal{B}.$
+</li>
+<li>
+$\begin{array}{c} P \\[-1em] \mathcal{C} \leftarrow \mathcal{B} \end{array}
+= P_\mathcal{C}^{-1} P_\mathcal{B}$.
+</li>
+</ul>
+
+<p>
+You can also use row reduction:
+$$\left[ \begin{array}{c|c} P_\mathcal{C} & P_\mathcal{B} \end{array} \right]
+\leadsto
+\left[
+  \begin{array}{c|c} I &
+    \begin{array}{c} P \\[-1em] \mathcal{C} \leftarrow \mathcal{B} \end{array}
+  \end{array}
+\right]$$
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+If
+$\begin{array}{c} P \\[-1em] \mathcal{C} \leftarrow \mathcal{B} \end{array}
+= \begin{bmatrix}1&0\\1&1\end{bmatrix}$
+and
+$[\mathbf{x}]_\mathcal{B} = \begin{bmatrix}1\\1\end{bmatrix}$,
+what is $[\mathbf{x}]_\mathcal{C}$?
+</p>
+
+<ul>
+<li class=inline>
+    <span class=red>A</span> $\begin{bmatrix}1\\0\end{bmatrix}$ </li>
+<li class=inline>
+    <span class=red>B</span> $\begin{bmatrix}1\\1\end{bmatrix}$ </li>
+<li class=inline>
+    <span class=red>C</span> $\begin{bmatrix}1\\2\end{bmatrix}$ </li>
+<li class=inline> <span class=red>D</span> Other. </li>
+</ul>
+
+<h2>Digital music (not on the exam)</h2>
+
+<img
+src="http://images.45worlds.com/f/cd/beyonce-dangerously-in-love-4-cd.jpg"
+height=300
+alt="Beyonc&eacute; CD">
+
+<p>
+One second of music on a CD is a vector in $\mathbb{R}^{44100}$.
+</p>
+
+<p class=green>
+(Sort of.
+Double that because it is in stereo.
+Use integers between $0$ and $65535$ instead of $\mathbb{R}$.)
+</p>
+
+<p>
+This approximates a continuous pressure wave function
+by a discrete sequence of numbers.
+</p>
+
+<p>
+WAV files use basically the same format as a CD.
+(Usually. There are some quirks.)
+</p>
+
+<p>
+MP3 files take up less memory.
+To do this, make a change of basis
+and delete basis vectors that you cannot hear.
+The basis vectors are
+<a href="https://www.wolframalpha.com/input/?i=play+sin%28440*2*pi*t%29">
+pure tones</a>
+and the change of basis operation
+is the <span class=green>Fourier transform</span>.
+</p>
+
+<p>
+MP3 also uses Huffman coding, but that's another story.
+</p>
+
+<h2>&sect;4.8 Difference equations (not on the exam)</h2>
+
+<p>
+Like with a CD,
+approximate a continuous function
+by a discrete sequence of numbers.
+</p>
+
+<p>
+Difference equations are like differential equations,
+but you do not have to take limits
+because there is a shortest unit of time.
+Instead of 
+$$f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$$
+use something like
+$$y'_k = \text{scalar}(y_{k+1} - y_k).$$
+This is a linear transformation.
+</p>
+
+<h2>&sect;4.9: Markov chains (not on the exam)</h2>
+
+<p>
+In a science fiction future I just made up,
+everybody lives on the Earth and the Moon.
+Every year,
+$20\%$ of the people on the Moon move to Earth,
+and $10\%$ of the people on the Earth move to the Moon.
+Nobody has children and everybody lives forever.
+</p>
+
+<p>
+Start with $3$ billion people on the Earth and nobody on the Moon.
+How many are on Earth after a thousand years?
+Guess, to the nearest half billion:
+</p>
+
+<ul>
+<li class="inline"> <span class=red>A:</span> $0.5$ </li>
+<li class="inline"> <span class=red>B:</span> $1.0$ </li>
+<li class="inline"> <span class=red>C:</span> $1.5$ </li>
+<li class="inline"> <span class=red>D:</span> $2.0$ </li>
+<li class="inline"> <span class=red>E:</span> $2.5$ </li>
+</ul>
+
+<p>
+After one year:
+$$
+\left[ \begin{array}{c} E \\ M \end{array} \right]
+= \left[ \begin{array}{cc} .9 & .2 \\ .1 & .8 \end{array} \right]
+\left[ \begin{array}{c} 3 \\ 0 \end{array} \right]
+$$
+</p>
+
+<p>
+<a href="http://www.wolframalpha.com/input/?i=%7B%7B0.9%2C+0.2%7D%2C%7B0.1%2C+0.8%7D%7D%5E1000+%7B%7B3%7D%2C%7B0%7D%7D">
+After a thousand years: </a>
+$$
+\left[ \begin{array}{c} E \\ M \end{array} \right]
+= \left[ \begin{array}{cc} .9 & .2 \\ .1 & .8 \end{array} \right]^{1000}
+\left[ \begin{array}{c} 3 \\ 0 \end{array} \right]
+$$
+</p>
+
+<h2>Homework</h2>
+
+<p>
+Check Gauchospace.
+Start reading Chapter 5.
+</p>
+</body>
+</html>

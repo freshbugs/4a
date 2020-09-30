@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 8</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>First exam for Math 4A, F19</h1>
+
+
+<title>Time</title>
+
+<style type="text/css">
+#clock { font-family: sans-serif; font-size: 10em; }
+</style>
+
+<script type="text/javascript">
+<!--
+
+function updateClock ( )
+{
+  var currentTime = new Date ( );
+
+  var hh = currentTime.getHours ( );
+  var mm = currentTime.getMinutes ( );
+
+  // Reformat
+  mm = ( mm < 10 ? "0" : "" ) + mm;
+  hh = ( hh > 12 ? hh-12 : hh );
+  hh = ( hh == 0 ? 12 : hh );
+
+  // Update the time display
+  document.getElementById("clock").innerHTML = hh+":"+mm;
+}
+
+// -->
+</script>
+
+</head><body onload="updateClock(); setInterval('updateClock()', 10000 )">
+
+<div>
+  <span id="clock">HH:MM</span>
+</div>
+
+</body>
+</html>

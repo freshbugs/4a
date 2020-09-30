@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 18</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>Answers to the old exam</h1>
+
+<h2>Announcements</h2>
+
+<p> There's an exam on Friday. </p>
+
+<h2>Question 1</h2>
+
+<p>
+Is $\{(1,4,0),(1,4,0),(1,4,0)\}$
+a basis for $\mathbb{R}^3$?
+</p>
+
+<p>
+No.
+It is just a set of one vector (written three times).
+One vector cannot span $\mathbb{R}^3$.
+</p>
+
+<h2>Question 1 without the typo</h2>
+
+<p>
+Is
+$\left\{
+\begin{bmatrix}1\\4\\0\end{bmatrix},
+\begin{bmatrix}0\\1\\0\end{bmatrix},
+\begin{bmatrix}0\\0\\4\end{bmatrix}
+\right\}$
+a basis for $\mathbb{R}^3$?
+</p>
+
+<p>
+Put the vectors as the columns of a matrix,
+and then take the determinant
+by cofactor expansion
+$$ \left|
+\begin{array}{c} 1&0&0 \\ 4&1&1 \\ 0&0&4 \end{array}
+\right|
+=
+1 \left| \begin{array}{c} 1&1 \\ 0&4 \end{array} \right|
+- 0 + 0
+= 4.$$
+The determinant of this $3 \times 3$ matrix is non-zero,
+so its columns form a basis for $\mathbb{R}^3$.
+</p>
+
+<p> <span class=red>Answer:</span> Yes.  </p>
+
+<p>
+<span class=red>Or:</span>
+row reduce the matrix.
+Non-reduced echelon form is good enough.
+You get a pivot in every row
+(so the columns span $\mathbb{R}^3$)
+and a pivot in every column
+(so the columns are linearly independent).
+</p>
+
+<h2>Question 2</h2>
+
+<p>
+Find a basis for Nul$\begin{bmatrix}1&-2&4\\2&-4&8\end{bmatrix}$.
+</p>
+
+<p>
+$$\left[ \begin{array}{ccc|c} 1&-2&4&0 \\ 2&-4&8&0 \end{array} \right]
+  \leadsto
+  \left[ \begin{array}{ccc|c} 1&-2&4&0 \\ 0&0&0&0 \end{array} \right] $$
+There is one pivot,
+and two free variables $x_2,x_3$.
+The general solution is
+$$ \begin{align}
+  x_1 &= 2x_2 - 4x_3 \\
+  x_2 &= 1x_2 + 0x_3 \\
+  x_3 &= 0x_2 + 1x_3
+  \end{align} $$
+As a vector equation
+$$
+\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}
+=
+x_2 \begin{bmatrix}2\\1\\0 \end{bmatrix}
++ x_3 \begin{bmatrix}-4\\0\\1 \end{bmatrix}
+$$
+So set of solutions is
+Span
+$\left\{ 
+\begin{bmatrix}2\\1\\0 \end{bmatrix},
+\begin{bmatrix}-4\\0\\1 \end{bmatrix} \right\}$.
+</p>
+
+<p>
+<span class=red>Answer:</span>
+$\left\{ 
+\begin{bmatrix}2\\1\\0 \end{bmatrix},
+\begin{bmatrix}-4\\0\\1 \end{bmatrix} \right\}$.
+</p>
+
+<p>
+<span class=red>Sanity check:</span>
+$\begin{bmatrix}1&-2&4\\2&-4&8\end{bmatrix}$
+times either one of the vectors is zero,
+so they are in the null space.
+They are obviously linearly independent.
+</p>
+
+<h2>Question 3</h2>
+
+<p>
+Find a basis for
+Col$\begin{bmatrix}1&-2&4\\2&-4&8\\0&0&1\end{bmatrix}$.
+</p>
+
+<p>
+The second column is two times the first,
+so we can delete it,
+and the remaining two columns will still span the column space.
+Those remaining two columns are obviously linearly independent
+since neither is a multiple of the other.
+Therefore they form a basis for the column space.
+</p>
+
+<p>
+<span class=red>Answer:</span>
+$
+  \left\{
+  \begin{bmatrix}1\\2\\0\end{bmatrix},
+  \begin{bmatrix}4\\8\\1\end{bmatrix}
+  \right\}
+$
+</p>
+
+<p>
+<span class=red>Or:</span>
+row reduce the matrix,
+notice a pivot in the first and third column,
+so take the first and third column of the original matrix.
+</p>
+
+<h2>Question 4</h2>
+
+<p>
+Is $\begin{bmatrix}7\\8\\9\end{bmatrix}$
+in the span of
+$\left\{
+\begin{bmatrix}1\\2\\3\end{bmatrix},
+\begin{bmatrix}4\\5\\6\end{bmatrix}
+\right\}$?
+</p>
+
+<p>
+<span class=red>Answer:</span>
+Yes.
+$
+- \begin{bmatrix}1\\2\\3\end{bmatrix}
++2 \begin{bmatrix}4\\5\\6\end{bmatrix}
+=
+\begin{bmatrix}7\\8\\9\end{bmatrix}.
+$
+</p>
+
+<p>
+If you couldn't "guess and check" that equation,
+you could find it by solving
+$$
+\left[
+\begin{array}{cc|c}
+1 & 4 & 7\\
+2 & 5 & 8\\
+3 & 6 & 9
+\end{array}
+\right].
+$$
+
+<h2>Question 5</h2>
+
+<p>
+Given two bases for $\mathbb{R}^2$
+$$
+\mathcal{B} = \left\{
+\begin{bmatrix}1\\2\end{bmatrix},
+\begin{bmatrix}3\\4\end{bmatrix} \right\},
+\quad
+\mathcal{C} = \left\{
+\begin{bmatrix}3\\4\end{bmatrix},
+\begin{bmatrix}1\\2\end{bmatrix} \right\},
+$$
+find the change of coordinates matrix
+from $\mathcal{B}$ to $\mathcal{C}$.
+</p>
+
+<p>
+Notice that $\mathcal{B}$ and $\mathcal{C}$
+have the same basis vectors but in the opposite order.
+</p>
+
+<p>
+$$\begin{align}
+[\mathbf{x}]_\mathcal{B} = \begin{bmatrix}a\\b\end{bmatrix}
+&\iff
+\mathbf{x} = a\begin{bmatrix}1\\2\end{bmatrix}
+    + b\begin{bmatrix}3\\4\end{bmatrix}
+\\&\iff
+  \mathbf{x} =
+     b\begin{bmatrix}3\\4\end{bmatrix} + a\begin{bmatrix}1\\2\end{bmatrix} \\
+\\&\iff
+  [\mathbf{x}]_\mathcal{C} = \begin{bmatrix}b\\a\end{bmatrix}.
+\end{align}$$
+</p>
+
+<p>
+Notice that $[\mathbf{x}]_\mathcal{C}$
+is obtained from $[\mathbf{x}]_\mathcal{B}$
+by swapping the two rows.
+Thus
+$$[\mathbf{x}]_\mathcal{C} = 
+\begin{bmatrix}0&1\\1&0\end{bmatrix}
+[\mathbf{x}]_\mathcal{B}.$$
+</p>
+
+<p>
+<span class=red>Answer:</span>
+$\begin{bmatrix}0&1\\1&0\end{bmatrix}$.
+</p>
+
+<p>
+<span class=red>Or:</span>
+$$
+\begin{align}
+P [\mathbf{x}]_\mathcal{B} = [\mathbf{x}]_\mathcal{C}
+    &\iff P P_\mathcal{B}^{-1} \mathbf{x} = P_\mathcal{C}^{-1} \mathbf{x} \\
+    &\Longleftarrow P P_\mathcal{B}^{-1} = P_\mathcal{C}^{-1} \\
+    &\iff P = P_\mathcal{C}^{-1} P_\mathcal{B}
+\end{align}
+$$
+So the change of coordinates matrix is
+$$
+P =
+\begin{bmatrix} 3 & 1 \\ 4 & 2 \end{bmatrix}^{-1}
+\begin{bmatrix} 1 & 3 \\ 2 & 4 \end{bmatrix}
+=
+\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}.
+$$
+It's easy to get confused and multiply these matrices in the wrong order,
+which would give the wrong answer.
+</p>
+
+<h2>Question 6</h2>
+
+<p> <span class=red>(a)</span> True. </p>
+
+<p>
+A set of $3$ vectors in $\mathbb{R}^2$
+must be linearly dependent
+because $3 > 2 = \dim \mathbb{R}^2$.
+</p>
+
+<p>
+It's okay to assume dim$\mathbb{R}^2 = 2$ here,
+since the question is testing something else.
+But just to be safe, note that
+$\left\{ \begin{bmatrix}1\\0\end{bmatrix},
+\begin{bmatrix}0\\1\end{bmatrix} \right\}$
+is a basis of $\mathbb{R}^2$.
+</p>
+
+<p> <span class=red>(b)</span> True. </p>
+
+<p>
+Suppose $A$ is a $3 \times 2$ matrix,
+and its echelon form has two pivots.
+That means one pivot in each of the two columns.
+There cannot be any free variables,
+so $A \mathbf{x} = \mathbf{0}$
+has only the trivial solution.
+Thus the only vector in the null space is the zero vector.
+</p>
+
+<p>
+It is the $2 \times 1$ zero vector
+because the null space is the set of $\mathbf{x}$s
+in $A \mathbf{x} = \mathbf{0}$.
+The shapes of those matrices must be:
+$$
+\begin{bmatrix} *&*\\*&*\\*&* \end{bmatrix}
+\begin{bmatrix} *\\* \end{bmatrix}
+= \begin{bmatrix} 0\\0\\0 \end{bmatrix}.
+$$
+</p>
+
+<p> <span class=red>(c)</span> False. </p>
+
+<p>
+The unit disk around the origin in $\mathbb{R}^2$
+is a subset but not a subspace of $\mathbb{R}^2$.
+For example,
+$\begin{bmatrix}1/2\\1/2\end{bmatrix}$
+is in the unit disk,
+but $100$ times it is not in the unit disk any more.
+</p>
+
+<h2>Determinants</h2>
+
+<p>
+The exam from 2014 didn't have any questions about determinants,
+unless you used them for Question 1.
+</p>
+
+<p>
+<span class=red>Question:</span>
+Given that
+$\det\begin{bmatrix}2&4&8\\3&9&27\\4&16&74\end{bmatrix} = 48$,
+what is
+$\det\begin{bmatrix}200&400&800\\3&9&27\\4&16&74\end{bmatrix}$?
+</p>
+
+<p>
+<span class=red>Answer:</span>
+$4800$,
+because we multiplied the first row by $100$.
+</p>
+
+<p>
+Note:
+$$
+\begin{align}
+\left| \begin{array}{ccc}200&400&800\\3&9&27\\4&16&74\end{array} \right| 
+&=
+100\left| \begin{array}{ccc}2&4&8\\3&9&27\\4&16&74\end{array} \right|
+\\
+\left| \begin{array}{ccc}2&4&8\\3&9&27\\4&16&74\end{array} \right|
+&=
+\frac{1}{100}
+\left| \begin{array}{ccc}200&400&800\\3&9&27\\4&16&74\end{array} \right| 
+\end{align}
+$$
+</p>
+
+<p>
+Some fun facts about determinants:
+</p>
+
+<ul>
+<li> $\det(AB) = \det(A) \det(B)$. </li>
+<li> $\det I = 1$. </li>
+<li> $\det (A^{-1}) = (\det A)^{-1}$, if $A$ is invertible. </li>
+<li> $\det (2A) \neq 2 \det A$. </li>
+<li> $\det (A+B) \neq (\det A) + (\det B)$. </li>
+</ul>
+
+<h2>Invertibility</h2>
+
+<p>
+$A^{-1}$ does not exist unless $A$ is square with non-zero determinant.
+</p>
+
+<p>
+If it exists, you can compute it.
+</p>
+
+<p>
+The <span class=red>invertible matrix theorem</span> is spread over 
+pages 114, 158, (237), 277, and 423.
+</p>
+
+<p>
+Let $A$ be an $n \times n$ matrix.
+The following are equivalent.
+</p>
+
+<ul>
+<li> $A$ is invertible </li>
+<li> Reduced echelon form of $A$ is $I$ </li>
+<li> Echelon form of $A$ has $n$ pivots </li>
+<li> $A \mathbf{x} = \mathbf{0}$ has only the trivial solution </li>
+<li> The columns of $A$ are linearly independent </li>
+<li> $\mathbf{x} \mapsto A \mathbf{x}$ is one-to-one </li>
+<li> $A \mathbf{x} = \mathbf{b}$ always has at least one solution </li>
+<li> The columns of $A$ span $\mathbb{R}^n$ </li>
+<li> $\mathbf{x} \mapsto A \mathbf{x}$ is onto $\mathbb{R}^n$ </li>
+<li> $CA = I$ for some $C$ </li>
+<li> $AD = I$ for some $D$ </li>
+<li> $A^T$ is invertible </li>
+<li> The columns of $A$ form a basis for $\mathbb{R}^n$ </li>
+<li> Col $A = \mathbb{R}^n$ </li>
+<li> dim Col $A = n$ </li>
+<li> rank $A = n$ </li>
+<li> Nul $A = \{ \mathbf{0} \}$ </li>
+<li> dim Nul $A = 0$ </li>
+<li> (...something about eigenvalues...) </li>
+<li> $\det A \neq 0$ </li>
+<li> (...something about perp...) </li>
+<li> (...something about perp...) </li>
+<li> (...something about the row space...)</li>
+<li> (...something about singular values...) </li>
+</ul>
+
+</body>
+</html>

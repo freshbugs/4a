@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 24</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;5.3 Diagonalization</h1>
+
+<p>
+In this section,
+$P$ is invertible,
+$D$ is diagonal,
+all matrices are $n \times n$,
+and we are interested in the equation:
+</p>
+
+<p class=boxed> $$A = PDP^{-1}$$ </p>
+
+<p>
+This is called a <span class=red>diagonalization</span> of $A$.
+If $A$ has a diagonalization then it is <span class=red>diagonalizable</span>.
+</p>
+
+<h2>Theorem 5</h2>
+
+<p>
+$A = PDP^{-1}$ if and only if:
+</p>
+
+<ul>
+<li> The columns of $P$ are linearly independent, </li>
+<li> the columns of $P$ are eigenvectors of $A$, and </li>
+<li> the diagonal entries of $D$ are the corresponding eigenvalues. </li>
+</ul>
+
+<p>
+So,
+the following are approximately the same question:
+</p>
+
+<div class=boxed>
+<ul>
+<li> Please diagonalize $A$. </li>
+<li> Find as many linearly independent eigenvectors of $A$ as you can. </li>
+</ul>
+</div>
+
+
+<h2>Example</h2>
+
+<p>
+Let $A = \begin{bmatrix} 1&1&1\\1&1&1\\1&1&1 \end{bmatrix}$.
+</p>
+
+<p>
+Here are three linearly independent eigenvectors:
+$$
+A \begin{bmatrix} 1\\1\\1 \end{bmatrix}
+  = \color{red}{3} \begin{bmatrix} 1\\1\\1 \end{bmatrix}, \quad
+A \begin{bmatrix} -1\\1\\0 \end{bmatrix}
+  = \color{red}{0} \begin{bmatrix} -1\\1\\0 \end{bmatrix}, \quad
+A \begin{bmatrix} -1\\0\\1 \end{bmatrix}
+  = \color{red}{0} \begin{bmatrix} -1\\0\\1 \end{bmatrix}.
+$$
+</p>
+
+<p>
+So
+$$
+A =
+\begin{bmatrix} 1&-1&-1\\1&1&0\\1&0&1 \end{bmatrix}
+\begin{bmatrix}
+    \color{red}{3}&0&0\\
+    0&\color{red}{0}&0\\
+    0&0&\color{red}{0}
+\end{bmatrix}
+\begin{bmatrix} 1&-1&-1\\1&1&0\\1&0&1 \end{bmatrix}^{-1}
+$$
+</p>
+
+<h3>Different but also correct</h3>
+
+<p>
+We could put the eigenvectors in a different order,
+as long as the eigenvalues are in the corresponding order.
+$$
+A =
+\begin{bmatrix} -1&-1&1\\1&0&1\\0&1&1 \end{bmatrix}
+\begin{bmatrix}
+    \color{red}{0}&0&0\\
+    0&\color{red}{0}&0\\
+    0&0&\color{red}{3}
+\end{bmatrix}
+\begin{bmatrix} -1&-1&1\\1&0&1\\0&1&1 \end{bmatrix}^{-1}
+$$
+</p>
+
+<p>
+We could use different eigenvectors.
+$$
+A =
+\begin{bmatrix} 1&0&2\\-1&1&2\\0&-1&2 \end{bmatrix}
+\begin{bmatrix}
+    \color{red}{0}&0&0\\
+    0&\color{red}{0}&0\\
+    0&0&\color{red}{3}
+\end{bmatrix}
+\begin{bmatrix} 1&0&2\\-1&1&2\\0&-1&2 \end{bmatrix}^{-1}
+$$
+</p>
+
+<p>
+But
+$$
+\begin{bmatrix} 1&-1&2\\-1&1&2\\0&0&2 \end{bmatrix}
+\begin{bmatrix}
+    \color{red}{0}&0&0\\
+    0&\color{red}{0}&0\\
+    0&0&\color{red}{3}
+\end{bmatrix}
+\begin{bmatrix} 1&-1&2\\-1&1&2\\0&0&2 \end{bmatrix}^{-1}
+$$
+is <span class=red>not</span> a diagonalization of $A$.
+</p>
+
+<p>Why not?</p>
+
+<ul>
+<li> <span class=red>A</span>&nbsp; The columns are not eigenvectors. </li>
+<li> <span class=red>B</span>&nbsp; The diagonal entries are not eigenvalues. </li>
+<li> <span class=red>C</span>&nbsp; The eigenvectors and eigenvalues
+     are not in the same order. </li>
+<li> <span class=red>D</span>&nbsp; Other. </li>
+</ul>
+
+<h2>Example</h2>
+
+<p> Let $A = \begin{bmatrix}0&1\\0&0\end{bmatrix}$.  </p>
+
+<p> How many different eigenvalues does $A$ have?  </p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> $2$ </li>
+<li class=inline> <span class=red>D</span> $\infty$ </li>
+</ul>
+
+<p>
+What is the dimension of the eigenspace corresponding to $\lambda = 0$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> $2$ </li>
+<li class=inline> <span class=red>D</span> other. </li>
+</ul>
+
+<p>
+Is $A$ diagonalizable?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> Yes </li>
+<li class=inline> <span class=red>B</span> No </li>
+</ul>
+
+<p>
+<a href="https://www.wolframalpha.com/input/?i=diagonalize%7B%7B0%2C1%7D%2C%7B0%2C0%7D%7D">Wolframalpha</a>
+does its best.
+</p>
+
+
+<h2>Example</h2>
+
+<p> Let $A = \begin{bmatrix}0&-1\\1&0\end{bmatrix}$.  </p>
+
+<p> How many different real number eigenvalues does $A$ have?  </p>
+
+<ul>
+<li class=inline> <span class=red>A</span> $0$ </li>
+<li class=inline> <span class=red>B</span> $1$ </li>
+<li class=inline> <span class=red>C</span> $2$ </li>
+<li class=inline> <span class=red>D</span> $\infty$ </li>
+</ul>
+
+<p>
+Is $A$ diagonalizable (over $\mathbb{R}$)?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span> Yes </li>
+<li class=inline> <span class=red>B</span> No </li>
+</ul>
+
+<p>
+<a href="https://www.wolframalpha.com/input/?i=diagonalize%7B%7B0%2C-1%7D%2C%7B1%2C0%7D%7D">Wolframalpha</a>
+does not mind.
+</p>
+
+<h2>Theorem 6</h2>
+
+<p>
+If $A$ has $n$ different eigenvalues then it is diagonalizable.
+</p>
+
+<h2>Theorem 7</h2>
+
+<p>
+Here is a method to diagonalize a matrix $A$,
+or find out it is not diagonalizable.
+</p>
+
+<ol>
+<li> Find the characteristic polynomial $\det (A - \lambda I)$. </li>
+<li class=red>
+     Factor the characteristic polynomial into linear factors. </li>
+<li> The eigenvalues, with multiplicities,
+     are the diagonal entries of $D$. </li>
+<li> For every eigenvalue, find a basis for its eigenspace. </li>
+<li class=red>
+     Combine all of those bases
+     to be the columns of a square matrix $P$. </li>
+</ol>
+
+<p>
+Steps 2 and 5 could go wrong,
+in which case $A$ is not diagonalizable.
+</p>
+
+<p class=boxed>
+$A$ is not diagonalizable over $\mathbb{R}$ if and only if
+it has a complex eigenvalue,
+or a "disappointing" eigenvalue
+whose multiplicity is greater than
+the dimension of its eigenspace.
+</p>
+
+<p>
+Out of time!
+On Monday we will discuss
+"multiplicity",
+what I mean by "disappointing",
+and what can and cannot go wrong
+when trying to diagonalize.
+</p>
+
+<!--
+<h2>Examples</h2>
+
+<p>
+See how much time we have to talk about the examples in the book.
+</p>
+
+<ol>
+
+<li> What is $\begin{bmatrix}5&0\\0&3\end{bmatrix}^k$?
+(<a href="https://www.wolframalpha.com/input/?i=%7B%7B5%2C0%7D%2C%7B0%2C3%7D%7D%5Ek">Answer</a>.)
+</li>
+
+<li> What is $\begin{bmatrix}7&2\\-4&1\end{bmatrix}^k$?
+(<a href="https://www.wolframalpha.com/input/?i=%7B%7B7%2C2%7D%2C%7B-4%2C1%7D%7D%5Ek"> Answer</a>.)
+</li>
+
+<li> Diagonalize $\begin{bmatrix}1&3&3\\-3&-5&-3\\3&3&1\end{bmatrix}$.
+(<a href="https://www.wolframalpha.com/input/?i=diagonalize%7B%7B1%2C3%2C3%7D%2C%7B-3%2C-5%2C-3%7D%2C%7B3%2C3%2C1%7D%7D">Answer</a>.)
+</li>
+
+<li> Diagonalize $\begin{bmatrix}2&4&3\\-4&-6&-3\\3&3&1\end{bmatrix}$,
+if possible.
+(<a href="https://www.wolframalpha.com/input/?i=diagonalize%7B%7B2%2C4%2C3%7D%2C%7B-4%2C-6%2C-3%7D%2C%7B3%2C3%2C1%7D%7D">Not possible</a>.)
+</li>
+
+<li> Is $\begin{bmatrix}5&-8&1\\0&0&7\\0&0&2\end{bmatrix}$ diagonalizable?
+(<a href="https://www.wolframalpha.com/input/?i=diagonalize%7B%7B5%2C-8%2C1%7D%2C%7B0%2C0%2C7%7D%2C%7B0%2C0%2C2%7D%7D">Yes</a>.)
+</li>
+
+<li> Diagonalize
+$\begin{bmatrix}5&0&0&0\\0&5&0&0\\1&3&-2&0\\-1&-2&0&-3\end{bmatrix}$.
+(<a href="https://www.wolframalpha.com/input/?i=diagonalize%7B%7B5%2C0%2C0%2C0%7D%2C%7B0%2C5%2C0%2C0%7D%2C%7B1%2C3%2C-2%2C0%7D%2C%7B-1%2C-2%2C0%2C-3%7D%7D">Answer</a>.)
+</li>
+
+</ol>
+
+<h2>Plan</h2>
+
+<p>
+On Monday I'll talk about the rest of Chapter 5,
+mostly not on the exam.
+No class on Wednesday.
+</p>
+
+<p>
+The week after that
+we'll cover a small amount of Chapter 6.
+</p>
+
+-->
+</body>
+</html>

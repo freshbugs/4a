@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta  charset="UTF-8">
+<title>Math 4A, Lecture 16</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>                
+<link rel="stylesheet" type="text/css" href="my4a.css">
+</head>
+<body>
+
+<h1>&sect;4.4: Coordinate systems</h1>
+
+<p>
+<b>TL;DR</b>
+The "coordinates of a vector relative to a basis" are the scalars
+when you write it as a linear combination of basis vectors.
+</p>
+
+<h2>Announcements</h2>
+
+<p> Homework 4 is due tonight.  </p>
+
+<p>
+Homework 5 is due in one week.
+It is short.
+You should finish it early.
+</p>
+
+<p>
+TA office hours are up on Gauchospace.
+</p>
+
+<p>
+The second midterm from last time I taught Math 4A is up on Gauchospace.
+It covers slightly different material, but might help.
+Next week's exam will cover
+</p>
+
+<ul>
+<li> &sect;2.1, &sect;2.2 </li>
+<li> &sect;3.1, &sect;3.2 </li>
+<li> &sect;4.1&ndash;&sect;4.5 </li>
+</ul>
+
+
+<h2>Story so far</h2>
+
+<p>
+Let's quickly go over everything since the first exam.
+</p>
+
+<h3>&sect;2.1 Matrix operations</h3>
+
+<p>
+You can calculate things like
+$\left(
+  \left[ \begin{array}{cc} 1 & 2 \\ 3 & 4 \end{array} \right]
+  - 2 \left[ \begin{array}{cc} 1 & 2 \\ 3 & 4 \end{array} \right]^T
+\right)
+\left[ \begin{array}{ccc} 0 & 1 & 2 \\ 0 & 1 & 0 \end{array} \right]$.
+
+</p>
+
+<h3>&sect;2.2 The inverse of a matrix</h3>
+
+<p>
+You can calculate $A^{-1}$, if it exists.
+</p>
+
+<h3>&sect;3.1 Intro to determinants</h3>
+
+<p> You can calculate $\operatorname{det} A$ by cofactor expansion ... </p>
+
+<h3>&sect;3.2 Properties of determinants</h3>
+
+<p>
+... or using row operations.
+Some nice properties:
+</p>
+
+<ul>
+<li> $A$ is invertible if and only if $\operatorname{det} A \neq 0$. </li>
+<li> $\operatorname{det} A^T = \operatorname{det} A$. </li>
+<li> $\operatorname{det}(AB)=(\operatorname{det}A)(\operatorname{det}B)$. </li>
+</ul>
+
+<h3>&sect;4.1 Vector (sub)spaces</h3>
+
+<p>
+A subspace of $\mathbb{R}^n$ is a subset that is also a vector space.
+</p>
+
+<h3>&sect;4.2: Null space, column space, and linear transformations</h3>
+
+<p>
+A matrix has a null space and a column space.
+An $m \times n$ matrix
+gives a linear transformation from $\mathbb{R}^n$ to $\mathbb{R}^m$.
+The column space is the same as the <span class=red>range</span>
+of this transformation.
+</p>
+
+<h3>&sect;4.3 Linearly independent sets; bases</h3>
+
+<p>
+A basis for a vector space is linearly independent and spans.
+You can find a basis
+for the column space and null space of a matrix.
+</p>
+
+
+<h2>Theorem 7</h2>
+
+<p class=boxed>
+Given a basis and a vector,
+there is a unique way to write the vector
+as a linear combination of the basis vectors.
+</p>
+
+<h2>Example</h2>
+
+<p>
+Let
+$\mathbf{b}_1 = \left[ \begin{array}{c} 1 \\ 2 \end{array} \right]$,
+$\mathbf{b}_2 = \left[ \begin{array}{c} 3 \\ 4 \end{array} \right]$,
+$\mathcal{B} = \{ \mathbf{b}_1, \mathbf{b}_2 \}$.
+This is a basis for $\mathbb{R}^2$.
+</p>
+
+<p>
+Let $\mathbf{v} = \left[ \begin{array}{c} 7 \\ 6 \end{array} \right]$.
+</p>
+
+<p>
+Row reduce
+$$
+[ \mathbf{b}_1 \mathbf{b}_2 | \mathbf{v} ] =
+\left[
+    \begin{array}{cc|c}
+    1 & 3 & 7 \\
+    2 & 4 & 6
+    \end{array}
+\right]
+\leadsto
+\left[
+    \begin{array}{cc|c}
+    1 & 0 & -5 \\
+    0 & 1 & 4
+    \end{array}
+\right]
+$$
+So
+$$\mathbf{v} = -5 \mathbf{b}_1 + 4 \mathbf{b}_2.$$
+</p>
+
+<p>
+The
+<span class=red>coordinate vector of $\mathbf{v}$
+relative to $\mathcal{B}$</span>
+is
+$$[\mathbf{v}]_\mathcal{B} =
+  \left[ \begin{array}{c} -5 \\ 4 \end{array} \right].$$
+</p>
+
+<h2>Clicker question</h2>
+
+<p>
+Let
+$\mathbf{b}_1 = \left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$,
+$\mathbf{b}_2 = \left[ \begin{array}{c} 1 \\ 1 \end{array} \right]$,
+$\mathcal{B} = \{\mathbf{b}_1, \mathbf{b}_2\}$.
+What is
+$\left[ \begin{array}{c} 0 \\ 1 \end{array} \right]_\mathcal{B}$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span>
+    $\left[ \begin{array}{c} -1 \\ 1 \end{array} \right]$ </li>
+<li class=inline> <span class=red>B</span>
+    $\left[ \begin{array}{c} 0 \\ 1 \end{array} \right]$ </li>
+<li class=inline> <span class=red>C</span>
+    $\left[ \begin{array}{c} 1 \\ 1 \end{array} \right]$ </li>
+</ul>
+
+<h2>Clicker question</h2>
+
+<p>
+Let
+$\mathbf{b}_1 = \left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$,
+$\mathbf{b}_2 = \left[ \begin{array}{c} 1 \\ 1 \end{array} \right]$,
+$\mathcal{B} = \{\mathbf{b}_1, \mathbf{b}_2\}$.
+If
+$[\mathbf{v}]_\mathcal{B}
+ = \left[ \begin{array}{c} 0 \\ 1 \end{array} \right]$
+then what is $\mathbf{v}$?
+</p>
+
+<ul>
+<li class=inline> <span class=red>A</span>
+    $\left[ \begin{array}{c} -1 \\ 1 \end{array} \right]$ </li>
+<li class=inline> <span class=red>B</span>
+    $\left[ \begin{array}{c} 0 \\ 1 \end{array} \right]$ </li>
+<li class=inline> <span class=red>C</span>
+    $\left[ \begin{array}{c} 1 \\ 1 \end{array} \right]$ </li>
+</ul>
+
+<h2>Change of coordinates matrix</h2>
+
+<p>
+Let
+$\mathbf{b}_1 = \left[ \begin{array}{c} 1 \\ 0 \end{array} \right]$,
+$\mathbf{b}_2 = \left[ \begin{array}{c} 1 \\ 1 \end{array} \right]$,
+$\mathcal{B} = \{\mathbf{b}_1, \mathbf{b}_2\}$.
+</p>
+
+<p>
+The <span class=red>change of coordinates matrix</span>
+has columns $\mathbf{b}_1$ and $\mathbf{b}_2$.
+So
+$$P_\mathcal{B} = \left[
+  \begin{array}{cc} 1 & 1 \\ 0 & 1 \end{array}
+  \right].$$
+Then
+</p>
+
+<p class=boxed>
+$\mathbf{v} = P_\mathcal{B} [\mathbf{v}]_\mathcal{B}, \quad
+[\mathbf{v}]_\mathcal{B} = P_\mathcal{B}^{-1} \mathbf{v}$
+</p>
+
+
+<h2>Clicker question</h2>
+
+<p>
+Let
+$\mathbf{b}_1 = \left[ \begin{array}{c} 1 \\ 2 \\ 1 \end{array} \right]$,
+$\mathbf{b}_2 = \left[ \begin{array}{c} 3 \\ 4 \\ 1 \end{array} \right]$,
+$\mathcal{B} = \{ \mathbf{b}_1, \mathbf{b}_2 \}$.
+This is a basis for its span.
+</p>
+
+<p>
+Let $\mathbf{v} = \left[ \begin{array}{c} 7 \\ 6 \\ -1 \end{array} \right]$.
+</p>
+
+<p>
+Row reduce
+$$
+[ \mathbf{b}_1 \mathbf{b}_2 | \mathbf{v} ] =
+\left[
+    \begin{array}{cc|c}
+    1 & 3 & 7 \\
+    2 & 4 & 6 \\
+    1 & 1 & -1
+    \end{array}
+\right]
+\leadsto
+\left[
+    \begin{array}{cc|c}
+    1 & 0 & -5 \\
+    0 & 1 & 4 \\
+    0 & 0 & 0
+    \end{array}
+\right]
+$$
+</p>
+
+<p> What is $[\mathbf{v}]_\mathcal{B}$? </p>
+
+<ul>
+<li class=inline> <span class=red>A</span>
+  $\left[ \begin{array}{c} -5 \\ 4 \end{array} \right]$ </li>
+<li class=inline> <span class=red>B</span>
+  $\left[ \begin{array}{c} -5 \\ 4 \\ 0 \end{array} \right]$ </li>
+<li class=inline> <span class=red>C</span> Nope. </li>
+</ul>
+
+<h2>Theorem 8</h2>
+
+<p class=boxed>
+If $\mathcal{B} = \{ \mathbf{b}_1, \dots, \mathbf{b}_n \}$ is a basis for a vector space $V$
+then
+$$\mathbf{v} \mapsto [\mathbf{v}]_\mathcal{B}$$
+is a one-to-one and onto linear transformation from $V$ onto $\mathbb{R}^n$.
+</p>
+
+<p>
+[Edited later:
+at first I forgot the "onto".
+A one-to-one and onto function is also called a
+<a href="https://en.wikipedia.org/wiki/Bijection">
+bijection</a>.]
+</p>
+
+<p>
+You can refer to vectors in $V$
+by their the coordinate vector in $\mathbb{R}^n$.
+</p>
+
+<p>
+Secret knowledge: $V$ is isomorphic to $\mathbb{R}^n$.
+This makes precise the idea that,
+eg.,
+any plane through the origin "looks like" $\mathbb{R}^2$.
+</p>
+
+<h2>Summary</h2>
+
+<p>
+Suppose you are given a vector $\mathbf{v}$
+in a vector space with basis $\{ \mathbf{a}, \mathbf{b} \}$.
+</p>
+
+<p>
+Two ways to say the same thing:
+</p>
+
+<ul>
+<li> $[\mathbf{v}]_{\{\mathbf{a}, \mathbf{b} \}}
+  = \left[ \begin{array}{c} x \\ y \end{array} \right]$. </li>
+<li> $\mathbf{v} = x \mathbf{a} + y \mathbf{b}$. </li>
+</ul>
+
+<p>
+If you are told $\mathbf{v}$
+and asked to compute $[\mathbf{v}]_{\{\mathbf{a}, \mathbf{b} \}}$,
+then you have to solve
+$\mathbf{v} = x \mathbf{a} + y \mathbf{b}$
+for $x$ and $y$.
+</p>
+
+<p>
+If you are told $[\mathbf{v}]_{\{\mathbf{a}, \mathbf{b} \}}$
+and asked to compute $\mathbf{v}$,
+then just substitute $x$ and $y$
+into $\mathbf{v} = x \mathbf{a} + y \mathbf{b}$.
+</p>
+
+
+</body>
+</html>
